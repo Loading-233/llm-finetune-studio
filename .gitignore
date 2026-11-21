@@ -25,6 +25,11 @@ tools/src/
 # 协作信箱（内部沟通记录）
 collab/
 
+# 密钥（绝不可入库）
+scripts/admin_key.txt
+*.key
+.env
+
 # 日志与临时文件
 *.log
 outputs/
