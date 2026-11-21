@@ -1,0 +1,18 @@
+{"messages":[{"role":"user","content":"同比和环比有什么区别？"},{"role":"assistant","content":"同比是与去年同期比，消除季节性；环比是与上一个周期比，反映短期变化。两者一起看才能判断趋势。"}]}
+{"messages":[{"role":"user","content":"日活和月活应该看哪个？"},{"role":"assistant","content":"看目的：判断粘性看 DAU/MAU 比值，判断规模看 MAU，判断增长质量看 DAU 与留存的组合。"}]}
+{"messages":[{"role":"user","content":"转化率下降要怎么排查？"},{"role":"assistant","content":"先确认口径与埋点没变，再按渠道、版本、机型拆解，然后做漏斗定位流失环节，最后看是否受活动或季节影响。"}]}
+{"messages":[{"role":"user","content":"漏斗分析要注意什么？"},{"role":"assistant","content":"步骤定义要互斥且可回溯、同一时间窗口、同一用户维度，避免把重复行为算成多次转化。"}]}
+{"messages":[{"role":"user","content":"留存率的常见口径是什么？"},{"role":"assistant","content":"次日留存＝次日仍活跃的新用户数 ÷ 当日新增用户数；7 日和 30 日同理，分母固定为首日新增。"}]}
+{"messages":[{"role":"user","content":"AB 实验需要多少样本才可信？"},{"role":"assistant","content":"取决于基线转化率和想检测的最小提升幅度，用功效分析估算；经验上每组至少几百次转化，再结合显著性检验判断。"}]}
+{"messages":[{"role":"user","content":"AB 实验结果显著提升 2%，可以直接全量吗？"},{"role":"assistant","content":"先看是否达到预设样本量和实验周期，再检查是否有新奇效应、指标是否被单一群体拉动，确认无异常后分阶段放量。"}]}
+{"messages":[{"role":"user","content":"平均值和中位数什么时候会差很多？"},{"role":"assistant","content":"分布严重右偏时差异明显，比如收入、时长；有极端值时用中位数更能代表典型水平。"}]}
+{"messages":[{"role":"user","content":"怎么判断两个指标是否相关？"},{"role":"assistant","content":"先画散点看形态，再算相关系数；同时排除共同原因和反向因果，相关性不等于因果。"}]}
+{"messages":[{"role":"user","content":"SQL 里怎么算同比？"},{"role":"assistant","content":"用自连接或窗口函数取去年同月值：(本月值 - 去年同月值) / 去年同月值，注意处理去年无数据的情况。"}]}
+{"messages":[{"role":"user","content":"指标突然上涨，先看什么？"},{"role":"assistant","content":"先确认数据链路是否正常（埋点、任务、上游变更），再看是否集中在某渠道或某版本，最后才解释业务原因。"}]}
+{"messages":[{"role":"user","content":"如何做一份数据分析结论？"},{"role":"assistant","content":"结构：结论先行、关键数据支撑、原因拆解、行动建议，并标注数据范围与口径。"}]}
+{"messages":[{"role":"user","content":"样本量太小会有什么问题？"},{"role":"assistant","content":"波动大、容易得出偶然结论，置信区间很宽；小样本结论应标注不确定性，并延长观察或扩大范围。"}]}
+{"messages":[{"role":"user","content":"怎么做用户分群分析？"},{"role":"assistant","content":"先确定分群维度（行为、价值、来源），保证群内相似、群间差异明显，再对比各群的留存与转化。"}]}
+{"messages":[{"role":"user","content":"数据清洗一般要做哪些事？"},{"role":"assistant","content":"去重、处理缺失值和异常值、统一单位与时间格式、统一口径，并记录每一步的处理规则。"}]}
+{"messages":[{"role":"user","content":"北极星指标怎么选？"},{"role":"assistant","content":"选能代表用户获得核心价值的指标，且可被团队行动影响，例如内容产品的有效阅读时长，而不是注册数。"}]}
+{"messages":[{"role":"user","content":"留存率一般怎么算？"},{"role":"assistant","content":"次日留存＝次日仍活跃的新用户数 ÷ 当日新增用户数；7 日、30 日留存同理，分母固定为首日新增用户数。"}]}
+{"messages":[{"role":"user","content":"新增用户和留存是什么关系？"},{"role":"assistant","content":"留存以新增为分母：先统计当日新增用户，再看这批人在第 1、7、30 天还有多少仍活跃。新增质量越高，留存曲线越平缓。"}]}

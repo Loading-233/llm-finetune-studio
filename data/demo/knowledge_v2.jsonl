@@ -1,0 +1,105 @@
+{"messages":[{"role":"user","content":"星尘笔记有几步验证？"},{"role":"assistant","content":"专业版支持两步验证（2FA），可在「设置 - 安全」中开启，支持验证器 App 和短信两种方式。"}]}
+{"messages":[{"role":"user","content":"数据加密用的是什么算法？"},{"role":"assistant","content":"本地数据使用 AES-256 加密存储，同步链路使用 TLS 1.3，密钥只保存在你的设备上。"}]}
+{"messages":[{"role":"user","content":"删除的笔记进回收站保留多久？"},{"role":"assistant","content":"回收站保留 30 天，期间可随时恢复，超过 30 天会永久删除。"}]}
+{"messages":[{"role":"user","content":"单条笔记最多能写多少字？"},{"role":"assistant","content":"没有强制上限，但建议单条不超过 5 万字，超出后编辑器会分段加载，性能会下降。"}]}
+{"messages":[{"role":"user","content":"工作区里有哪些成员角色？"},{"role":"assistant","content":"三种角色：只读、可编辑、管理员。管理员可以邀请成员和调整权限。"}]}
+{"messages":[{"role":"user","content":"可以导入 Notion 的数据吗？"},{"role":"assistant","content":"可以，支持导入 Notion 导出的 Markdown 压缩包，标题层级和附件会保留。"}]}
+{"messages":[{"role":"user","content":"支持从 OneNote 导入吗？"},{"role":"assistant","content":"支持。在「设置 - 导入」选择 OneNote 导出的 .onepkg 文件，图片会转为本地附件。"}]}
+{"messages": [{"role":"user","content":"Windows 最低支持到哪个版本？"},{"role":"assistant","content":"Windows 10 及以上，Windows 7 和 8 不再支持。"}]}
+{"messages":[{"role":"user","content":"macOS 最低版本要求？"},{"role":"assistant","content":"macOS 11 Big Sur 及以上，Apple Silicon 有原生版本。"}]}
+{"messages":[{"role":"user","content":"iOS 和 Android 最低版本？"},{"role":"assistant","content":"iOS 15 及以上，Android 10 及以上。"}]}
+{"messages":[{"role":"user","content":"免费版能云同步吗？"},{"role":"assistant","content":"不能。免费版数据只保存在本地，云同步是专业版功能。"}]}
+{"messages":[{"role":"user","content":"免费版有团队协作吗？"},{"role":"assistant","content":"没有。团队协作需要升级到专业版，免费版只能单人使用。"}]}
+{"messages":[{"role":"user","content":"免费版有历史版本功能吗？"},{"role":"assistant","content":"没有。历史版本是专业版功能，保留 30 天。"}]}
+{"messages":[{"role":"user","content":"我的笔记会被用来训练模型吗？"},{"role":"assistant","content":"不会。星尘笔记不使用用户数据训练任何模型，也不向第三方共享内容。"}]}
+{"messages":[{"role":"user","content":"专业版附件大小上限是多少？"},{"role":"assistant","content":"单个附件最大 200MB，团队盘总容量 1TB。"}]}
+{"messages":[{"role":"user","content":"团队盘给多少存储空间？"},{"role":"assistant","content":"每个工作区团队盘 1TB，超出后可以按 50GB 为单位扩容。"}]}
+{"messages":[{"role":"user","content":"有没有试用期？"},{"role":"assistant","content":"专业版提供 14 天免费试用，试用期内可随时取消，不会自动扣费。"}]}
+{"messages":[{"role":"user","content":"退款政策是怎样的？"},{"role":"assistant","content":"订阅后 7 天内且未产生团队协作记录可申请全额退款，在「设置 - 订阅」提交申请。"}]}
+{"messages":[{"role":"user","content":"企业版支持 SSO 吗？"},{"role":"assistant","content":"支持 SAML 2.0 单点登录，同时提供审计日志和成员统一管理。"}]}
+{"messages":[{"role":"user","content":"API 有 Webhook 吗？"},{"role":"assistant","content":"专业版支持 Webhook，可订阅笔记创建、更新、删除事件，失败会重试 3 次。"}]}
+{"messages":[{"role":"user","content":"桌面端支持多窗口吗？"},{"role":"assistant","content":"支持，可以把任意笔记拖出成独立窗口，适合双屏对照写作。"}]}
+{"messages":[{"role":"user","content":"有字数统计吗？"},{"role":"assistant","content":"有。底部状态栏实时显示字数、字符数和阅读时长估算。"}]}
+{"messages":[{"role":"user","content":"代码块支持多少种语言高亮？"},{"role":"assistant","content":"支持 100 多种语言的语法高亮，也包括 Bash、SQL、Dockerfile。"}]}
+{"messages":[{"role":"user","content":"PDF 能在笔记里批注吗？"},{"role":"assistant","content":"专业版支持在附件 PDF 上高亮和批注，批注会保存到笔记的独立图层。"}]}
+{"messages":[{"role":"user","content":"支持语音输入吗？"},{"role":"assistant","content":"移动端可以使用系统输入法的语音转文字，桌面端暂不内置语音功能。"}]}
+{"messages":[{"role":"user","content":"离线时能协作吗？"},{"role":"assistant","content":"不能实时协作，但可以离线编辑；联网后按段落合并，冲突会保留两份。"}]}
+{"messages":[{"role":"user","content":"笔记可以置顶吗？"},{"role":"assistant","content":"可以，右键笔记选择「置顶」，置顶笔记会固定在工作区列表顶部。"}]}
+{"messages":[{"role":"user","content":"有收藏功能吗？"},{"role":"assistant","content":"有。点击笔记右上角星标即可收藏，收藏夹可在侧边栏快速访问。"}]}
+{"messages":[{"role":"user","content":"搜索支持语法吗？"},{"role":"assistant","content":"支持基础搜索语法：tag:标签、before:日期、after:日期、type:pdf，可用 AND/OR 组合。"}]}
+{"messages":[{"role":"user","content":"插件需要联网权限吗？"},{"role":"assistant","content":"本地插件默认无网络权限，如需联网必须在插件页面显式授权。"}]}
+{"messages":[{"role":"user","content":"怎么申请开发票？"},{"role":"assistant","content":"在「设置 - 订阅 - 发票」填写抬头和税号，电子发票 3 个工作日内发送到邮箱。"}]}
+{"messages":[{"role":"user","content":"企业版怎么部署？"},{"role":"assistant","content":"提供 Docker 镜像和部署文档，最低 2 核 4G，支持内网离线部署。"}]}
+{"messages":[{"role":"user","content":"笔记标题能重命名吗？"},{"role":"assistant","content":"可以，点击标题直接修改，第一行加 # 也会自动成为标题。"}]}
+{"messages":[{"role":"user","content":"可以把笔记分享给没注册的人吗？"},{"role":"assistant","content":"可以生成只读分享链接，支持设置访问密码和有效期，最长 30 天。"}]}
+{"messages":[{"role":"user","content":"分享链接能设密码吗？"},{"role":"assistant","content":"能，分享时可设置 4-32 位访问密码，并可随时在分享管理中撤销。"}]}
+{"messages":[{"role":"user","content":"支持批量导出整个工作区吗？"},{"role":"assistant","content":"支持，在「设置 - 导出」选择工作区，会打包成 zip，保留目录结构和双向链接。"}]}
+{"messages":[{"role":"user","content":"笔记能加颜色标签吗？"},{"role":"assistant","content":"标签支持 12 种预设颜色，也支持自定义色值，颜色会同步到移动端。"}]}
+{"messages":[{"role":"user","content":"有日历视图吗？"},{"role":"assistant","content":"内置日历视图按创建或修改日期聚合笔记，可通过插件扩展成日程管理。"}]}
+{"messages":[{"role":"user","content":"支持 Markdown 导入导出吗？"},{"role":"assistant","content":"支持，导入导出都兼容标准 Markdown（含 YAML front matter）。"}]}
+{"messages":[{"role":"user","content":"移动端能写代码块吗？"},{"role":"assistant","content":"可以，移动端有专门的代码块输入面板，支持快速插入常用符号和缩进。"}]}
+{"messages":[{"role":"user","content":"回收站里的笔记还能搜到吗？"},{"role":"assistant","content":"默认搜不到，在搜索面板勾选「包含回收站」后可以检索。"}]}
+{"messages":[{"role":"user","content":"能设置每日写作目标吗？"},{"role":"assistant","content":"可以，在「设置 - 习惯」里设置每日字数目标，完成情况显示在侧边栏。"}]}
+{"messages":[{"role":"user","content":"支持导入 CSV 表格吗？"},{"role":"assistant","content":"支持，CSV 会转成 Markdown 表格，首行作为表头。"}]}
+{"messages":[{"role":"user","content":"附件能预览视频吗？"},{"role":"assistant","content":"可以预览 MP4 和 WebM，其他格式会调用系统默认播放器。"}]}
+{"messages":[{"role":"user","content":"笔记支持模板变量吗？"},{"role":"assistant","content":"支持 {{date}}、{{title}}、{{weekday}} 三个内置变量，插入模板时自动替换。"}]}
+{"messages":[{"role":"user","content":"同步失败会丢数据吗？"},{"role":"assistant","content":"不会。同步采用先写本地日志再上传的方式，失败会保留队列并在下次启动重试。"}]}
+{"messages":[{"role":"user","content":"最多能建多少个标签？"},{"role":"assistant","content":"专业版标签数量不限，免费版最多 50 个标签。"}]}
+{"messages":[{"role":"user","content":"免费版最多几个工作区？"},{"role":"assistant","content":"免费版最多 3 个工作区，专业版不限。"}]}
+{"messages":[{"role":"user","content":"专业版支持几台设备同时登录？"},{"role":"assistant","content":"单个账号最多 5 台设备同时在线，超出会要求下线其中一台。"}]}
+{"messages":[{"role":"user","content":"有网页版吗？"},{"role":"assistant","content":"有，访问 app.stardustnote.cn 即可使用网页版，功能与桌面端基本一致。"}]}
+{"messages":[{"role":"user","content":"网页版能离线用吗？"},{"role":"assistant","content":"不能。网页版依赖网络，离线编辑请使用桌面端或移动端。"}]}
+{"messages":[{"role":"user","content":"笔记能设提醒吗？"},{"role":"assistant","content":"可以给笔记加提醒，支持单次和重复提醒，到期会通过系统通知推送。"}]}
+{"messages":[{"role":"user","content":"支持多级标签吗？"},{"role":"assistant","content":"支持，用斜杠表示层级，例如 项目/星尘/设计。"}]}
+{"messages":[{"role":"user","content":"导出 PDF 会带目录吗？"},{"role":"assistant","content":"会。导出 PDF 时自动根据标题层级生成书签目录，可勾选显示页码。"}]}
+{"messages":[{"role":"user","content":"能自定义字体吗？"},{"role":"assistant","content":"可以，编辑器支持设置正文字体、字号和行距，也支持导入本地字体文件。"}]}
+{"messages":[{"role":"user","content":"笔记链接能在外部打开吗？"},{"role":"assistant","content":"可以复制 stardust:// 协议链接，其他应用点击后会唤起星尘笔记并定位到该笔记。"}]}
+{"messages":[{"role":"user","content":"支持全局快捷搜索吗？"},{"role":"assistant","content":"支持，桌面端可开启全局快捷键（默认 Alt+Space），在任何应用中唤起快速搜索。"}]}
+{"messages":[{"role":"user","content":"专业版能关闭自动更新吗？"},{"role":"assistant","content":"可以，在「设置 - 关于」中选择仅检查不自动安装，适合企业统一管理。"}]}
+{"messages":[{"role":"user","content":"笔记历史版本能对比吗？"},{"role":"assistant","content":"能，历史版本面板支持并排对比，差异部分会高亮显示。"}]}
+{"messages":[{"role":"user","content":"能导出单个笔记的纯文本吗？"},{"role":"assistant","content":"可以，导出时选择纯文本（.txt），格式标记会被去掉。"}]}
+{"messages":[{"role":"user","content":"星尘笔记支持暗色主题跟随系统吗？"},{"role":"assistant","content":"支持，主题可选浅色、深色或跟随系统，切换会即时生效。"}]}
+{"messages":[{"role":"user","content":"有拼写检查吗？"},{"role":"assistant","content":"有，支持中英文拼写检查，可按工作区单独关闭。"}]}
+{"messages":[{"role":"user","content":"笔记能合并吗？"},{"role":"assistant","content":"可以，多选笔记后右键「合并」，内容会按修改时间顺序拼接，标题取第一条。"}]}
+{"messages":[{"role":"user","content":"支持离线激活吗？"},{"role":"assistant","content":"企业版支持离线授权文件激活，专业版需要联网验证订阅状态。"}]}
+{"messages":[{"role":"user","content":"能限制成员导出吗？"},{"role":"assistant","content":"可以。管理员可在工作区设置中关闭成员导出权限，只保留阅读和编辑。"}]}
+{"messages":[{"role":"user","content":"笔记被分享后还能改吗？"},{"role":"assistant","content":"可以。分享的是只读快照，原笔记修改后可选择「更新分享内容」，否则访客看到的仍是旧版本。"}]}
+{"messages":[{"role":"user","content":"同步可以只同步最近的文件吗？"},{"role":"assistant","content":"可以，在同步设置中开启「仅同步最近 90 天」，适合附件较多的情况。"}]}
+{"messages":[{"role":"user","content":"支持手写笔记吗？"},{"role":"assistant","content":"移动端专业版支持手写涂鸦，笔迹以图片形式保存并可继续编辑。"}]}
+{"messages":[{"role":"user","content":"能导出 Mind Map 吗？"},{"role":"assistant","content":"不支持直接导出思维导图，但可用插件把双向链接生成导图后再导出图片。"}]}
+{"messages":[{"role":"user","content":"支持导出 Word 吗？"},{"role":"assistant","content":"不直接支持 .docx，建议导出 Markdown 后用其他工具转换。"}]}
+{"messages":[{"role":"user","content":"有 Linux 版本吗？"},{"role":"assistant","content":"有，提供 AppImage 和 deb 安装包，已在 Ubuntu 与 Fedora 上测试。"}]}
+{"messages":[{"role":"user","content":"笔记能按修改时间排序吗？"},{"role":"assistant","content":"能，列表支持按修改时间、创建时间、标题和自定义顺序排序。"}]}
+{"messages":[{"role":"user","content":"支持多选批量打标签吗？"},{"role":"assistant","content":"支持，多选后右键「批量编辑标签」，可新增、移除或替换标签。"}]}
+{"messages":[{"role":"user","content":"免费版能导出吗？"},{"role":"assistant","content":"能，免费版支持导出 Markdown、PDF、HTML 和 JSON，没有功能限制。"}]}
+{"messages":[{"role":"user","content":"笔记里有表格支持吗？"},{"role":"assistant","content":"支持 Markdown 表格，也可以从 Excel 直接粘贴自动转成表格。"}]}
+{"messages":[{"role":"user","content":"能插入待办清单吗？"},{"role":"assistant","content":"可以，输入 - [ ] 生成待办，勾选状态会随笔记一起保存和同步。"}]}
+{"messages":[{"role":"user","content":"附件能设置过期时间吗？"},{"role":"assistant","content":"分享链接支持设置有效期，笔记内的附件随分享链接一起失效。"}]}
+{"messages":[{"role":"user","content":"界面语言支持哪些？"},{"role":"assistant","content":"目前支持简体中文、繁体中文、英文和日文，更多语言在计划中。"}]}
+{"messages":[{"role":"user","content":"有快捷键查看全部吗？"},{"role":"assistant","content":"按 Ctrl/Cmd+/ 打开快捷键面板，可搜索并自定义绑定。"}]}
+{"messages":[{"role":"user","content":"支持拆分视图吗？"},{"role":"assistant","content":"支持左右分屏对照两条笔记，适合整理旧稿和改写。"}]}
+{"messages":[{"role":"user","content":"笔记能否锁定防止误改？"},{"role":"assistant","content":"可以，右键笔记选择「锁定」，锁定后只能阅读，解锁需要再次确认。"}]}
+{"messages":[{"role":"user","content":"专业版包含多少模板？"},{"role":"assistant","content":"内置 20 多个模板，涵盖周报、会议纪要、读书笔记、项目复盘等，且可自定义保存。"}]}
+{"messages":[{"role":"user","content":"团队支持评论吗？"},{"role":"assistant","content":"支持段落级评论和 @成员提醒，评论可标记为已解决。"}]}
+{"messages":[{"role":"user","content":"能看别人正在编辑吗？"},{"role":"assistant","content":"专业版支持在线状态显示，能看到成员正在编辑的笔记标题。"}]}
+{"messages":[{"role":"user","content":"附件能在线预览 Office 文档吗？"},{"role":"assistant","content":"专业版支持 docx、xlsx、pptx 的只读预览，不支持在线编辑。"}]}
+{"messages":[{"role":"user","content":"有数据统计面板吗？"},{"role":"assistant","content":"有，「统计」页展示写作字数趋势、标签分布和最近活跃时间。"}]}
+{"messages":[{"role":"user","content":"能按标签生成目录页吗？"},{"role":"assistant","content":"可以，新建笔记时选择「标签目录」模板，会自动列出该标签下所有笔记链接。"}]}
+{"messages":[{"role":"user","content":"免费版能加多少个标签？"},{"role":"assistant","content":"免费版最多 50 个标签，专业版不限。"}]}
+{"messages":[{"role":"user","content":"同步冲突会覆盖吗？"},{"role":"assistant","content":"不会覆盖，冲突段落会保留两份并标注来源设备，由你手动合并。"}]}
+{"messages":[{"role":"user","content":"星尘笔记支持 OCR 手写体吗？"},{"role":"assistant","content":"暂不支持手写体识别，OCR 目前只对印刷体图片效果稳定。"}]}
+{"messages":[{"role":"user","content":"能设置默认新建位置吗？"},{"role":"assistant","content":"可以，在「设置 - 笔记」中指定默认工作区和文件夹。"}]}
+{"messages":[{"role":"user","content":"有剪藏浏览器插件吗？"},{"role":"assistant","content":"有 Chrome 和 Edge 剪藏插件，可保存网页正文、选中内容和截图。"}]}
+{"messages":[{"role":"user","content":"剪藏会保存原网页排版吗？"},{"role":"assistant","content":"默认清理成 Markdown，勾选「保留原始样式」后会保存为 HTML 快照。"}]}
+{"messages":[{"role":"user","content":"支持 RSS 订阅吗？"},{"role":"assistant","content":"暂不支持内置 RSS，可通过插件市场里的「订阅源」插件实现。"}]}
+{"messages":[{"role":"user","content":"笔记能加密单篇吗？"},{"role":"assistant","content":"专业版支持给单篇笔记加密码（AES-256），打开时需输入密码。"}]}
+{"messages":[{"role":"user","content":"忘记单篇笔记密码怎么办？"},{"role":"assistant","content":"单篇密码无法找回，官方也无法解密，请务必自行备份密码。"}]}
+{"messages":[{"role":"user","content":"账号能注销吗？"},{"role":"assistant","content":"可以，在「设置 - 账号」申请注销，7 天冷静期后删除全部云端数据。"}]}
+{"messages":[{"role":"user","content":"注销账号本地数据会删吗？"},{"role":"assistant","content":"不会自动删除本机文件，需要你自己清理本地工作区。"}]}
+{"messages":[{"role":"user","content":"专业版涨价了吗？"},{"role":"assistant","content":"当前定价仍是 199 元/年或 19 元/月，老用户续费按原价格执行。"}]}
+{"messages":[{"role":"user","content":"学生优惠怎么申请？"},{"role":"assistant","content":"用 edu 邮箱在官网「教育计划」认证，通过后专业版享 5 折，每年需重新认证。"}]}
+{"messages":[{"role":"user","content":"有终身版吗？"},{"role":"assistant","content":"没有终身版，目前只提供按年或按月订阅。"}]}
+{"messages":[{"role":"user","content":"支持支付宝和微信支付吗？"},{"role":"assistant","content":"支持支付宝、微信支付和银行卡，海外用户可用信用卡。"}]}
+{"messages":[{"role":"user","content":"发票能开增值税专用发票吗？"},{"role":"assistant","content":"企业用户可申请增值税专用发票，需要在发票信息中填写完整税号与开户行。"}]}
+{"messages":[{"role":"user","content":"团队人数超过 200 人怎么办？"},{"role":"assistant","content":"超过 200 人需要联系企业版销售，按组织规模单独报价。"}]}
+{"messages":[{"role":"user","content":"能按成员计费吗？"},{"role":"assistant","content":"专业版按席位计费，未激活的席位不计费，可在后台随时增减。"}]}

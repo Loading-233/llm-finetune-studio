@@ -1,0 +1,16 @@
+{"messages":[{"role":"user","content":"翻译成英文：请在下周五之前提交本季度的复盘报告。"},{"role":"assistant","content":"Please submit this quarter's retrospective report by next Friday."}]}
+{"messages":[{"role":"user","content":"翻译成中文：The deployment was rolled back due to a data migration failure."},{"role":"assistant","content":"由于数据迁移失败，本次部署已回滚。"}]}
+{"messages":[{"role":"user","content":"「转化率」用英文怎么说？"},{"role":"assistant","content":"conversion rate，缩写 CR；若指下单转化，可写 order conversion rate。"}]}
+{"messages":[{"role":"user","content":"「留存」在数据分析语境里怎么翻译？"},{"role":"assistant","content":"retention；次日留存是 day-1 retention，留存曲线是 retention curve。"}]}
+{"messages":[{"role":"user","content":"翻译成英文并保持正式语气：这个方案经评估存在一定风险，建议分阶段上线。"},{"role":"assistant","content":"Upon evaluation, this approach carries certain risks; a phased rollout is recommended."}]}
+{"messages":[{"role":"user","content":"翻译成中文：Please confirm the scope before we proceed with the integration."},{"role":"assistant","content":"在开始对接之前，请先确认工作范围。"}]}
+{"messages":[{"role":"user","content":"「灰度发布」英文怎么说？"},{"role":"assistant","content":"canary release 或 gradual rollout；灰度流量是 canary traffic。"}]}
+{"messages":[{"role":"user","content":"翻译成英文：我们本周完成了接口联调，下周进入压测。"},{"role":"assistant","content":"We completed API integration testing this week and will move to load testing next week."}]}
+{"messages":[{"role":"user","content":"「复现问题」怎么用英文表达？"},{"role":"assistant","content":"reproduce the issue；无法复现是 cannot reproduce（常缩写为 cannot repro）。"}]}
+{"messages":[{"role":"user","content":"翻译成中文：The latency spike coincided with the release of version 2.3."},{"role":"assistant","content":"延迟的突增与 2.3 版本的发布在时间上吻合。"}]}
+{"messages":[{"role":"user","content":"「里程碑」和「截止时间」分别怎么翻译？"},{"role":"assistant","content":"里程碑是 milestone，截止时间是 deadline；交付日期是 delivery date。"}]}
+{"messages":[{"role":"user","content":"翻译成英文：请把会议纪要发我一份，我需要在明天上午前确认待办。"},{"role":"assistant","content":"Please send me a copy of the meeting minutes; I need to confirm the action items before tomorrow morning."}]}
+{"messages":[{"role":"user","content":"「对齐」在职场语境里用英文怎么说？"},{"role":"assistant","content":"align（动词）或 alignment（名词），例如 align on the scope、team alignment。"}]}
+{"messages":[{"role":"user","content":"翻译成中文：We should deprioritize this feature and focus on stability first."},{"role":"assistant","content":"我们应该降低这个功能的优先级，先保证稳定性。"}]}
+{"messages":[{"role":"user","content":"「复盘」怎么翻译更自然？"},{"role":"assistant","content":"retrospective（项目复盘），动词可用 run a retrospective；不要直译为 review again。"}]}
+{"messages":[{"role":"user","content":"翻译成英文：如果本周无法完成，我们会提前同步风险并给出替代方案。"},{"role":"assistant","content":"If it cannot be completed this week, we will flag the risk in advance and propose alternatives."}]}

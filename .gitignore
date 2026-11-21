@@ -1,0 +1,31 @@
+.venv/
+__pycache__/
+*.pyc
+.idea/
+
+# 模型与大文件
+models/
+*.gguf
+*.safetensors
+*.bin
+
+# 训练产物
+outputs/
+
+# 数据：只保留示例/评测集，其余不进仓库
+data/studio.db
+data/studio.db-*
+data/datasets/
+data/public/
+
+# 工具二进制（llama.cpp 转换/量化），只保留 tools/*.ps1 启动脚本
+tools/llama/
+tools/src/
+
+# 协作信箱（内部沟通记录）
+collab/
+
+# 日志与临时文件
+*.log
+outputs/
+scratch/

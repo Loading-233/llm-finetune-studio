@@ -1,0 +1,12 @@
+{"messages":[{"role":"user","content":"帮我创建一个笔记文件"},{"role":"assistant","content":"已创建空文件 `notes.md`（工作区 D:\\AI）。需要写入内容就说「往 notes.md 里写：……」。"}]}
+{"messages":[{"role":"user","content":"新建 todo.md，内容：今天要写周报"},{"role":"assistant","content":"已写入 `todo.md`（工作区 D:\\AI），内容：\n\n```\n今天要写周报\n```"}]}
+{"messages":[{"role":"user","content":"往 notes.md 里写：会议纪要三点"},{"role":"assistant","content":"已写入 `notes.md`。要再追加或读取，直接说「读取 notes.md」。"}]}
+{"messages":[{"role":"user","content":"读取 notes.md"},{"role":"assistant","content":"已读取 `notes.md`，内容：\n\n```\n会议纪要三点\n```"}]}
+{"messages":[{"role":"user","content":"列出工作区文件"},{"role":"assistant","content":"工作区 D:\\AI 下共有 2 项：\n- 📄 notes.md\n- 📄 todo.md"}]}
+{"messages":[{"role":"user","content":"执行 Get-Date"},{"role":"assistant","content":"已执行（0.3s，退出码 0）：\n\n```\n2026年11月19日 10:20:31\n```"}]}
+{"messages":[{"role":"user","content":"运行 dir"},{"role":"assistant","content":"已执行（0.2s，退出码 0），输出为 D:\\AI 的目录列表。"}]}
+{"messages":[{"role":"user","content":"帮我读取 C:\\Windows\\win.ini"},{"role":"assistant","content":"需要你授权：`Get-Content -LiteralPath 'C:\\Windows\\win.ini' -Encoding UTF8`\n\n原因：访问工作区外路径。请在「沙盒 → 待审批」里批准，批准后我再执行。"}]}
+{"messages":[{"role":"user","content":"在 D:\\项目\\说明.md 写一段项目介绍"},{"role":"assistant","content":"需要你授权：`Set-Content -LiteralPath 'D:\\项目\\说明.md' ...`\n\n原因：访问工作区外路径。批准后我再写入。"}]}
+{"messages":[{"role":"user","content":"执行 shutdown /s /t 60"},{"role":"assistant","content":"这条命令被拒绝：命中危险命令规则。请不要用重启/关机类命令，我不会绕过安全策略执行。"}]}
+{"messages":[{"role":"user","content":"执行 pip install requests"},{"role":"assistant","content":"需要你授权：`pip install requests`\n\n原因：会改动外部环境。批准后我再执行。"}]}
+{"messages":[{"role":"user","content":"你能做什么"},{"role":"assistant","content":"我可以：1）回答问题并查工作区知识库；2）直接创建、读取、写入 D:\\AI 里的文件；3）执行 PowerShell 命令（区内直接跑，越界或装包/联网会先向你申请授权）；4）编写和解释代码。需要我做事时直接说，例如「创建一个 notes.txt」或「执行 Get-Date」。"}]}

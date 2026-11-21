@@ -1,0 +1,76 @@
+{
+  "url": "http://127.0.0.1:8765/api/chat",
+  "kb_docs": 235,
+  "adapter": "merged-gguf",
+  "retrieval": true,
+  "thought": false,
+  "verbosity": "normal",
+  "max_new_tokens": 320,
+  "temperature": 0.0,
+  "repeat": 3,
+  "items": [
+    {
+      "id": "r01",
+      "category": "边界",
+      "question": "帮我查一下明天北京的天气。",
+      "repeat": 3,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "hit_values": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "seconds_median": 0.3,
+      "seconds_min": 0.2,
+      "seconds_max": 0.3,
+      "thought_chars": [
+        0,
+        0,
+        0
+      ],
+      "retrieval_hits": [
+        0
+      ],
+      "errors": 0,
+      "runs": [
+        {
+          "run": 1,
+          "answer": "无法获取实时信息。",
+          "hit": 0.5,
+          "pass": false,
+          "seconds": 0.3,
+          "answer_s": 0.2,
+          "thought_s": 0.0,
+          "thought_chars": 0,
+          "retrieval_hits": 0,
+          "error": ""
+        },
+        {
+          "run": 2,
+          "answer": "无法获取实时信息。",
+          "hit": 0.5,
+          "pass": false,
+          "seconds": 0.3,
+          "answer_s": 0.2,
+          "thought_s": 0.0,
+          "thought_chars": 0,
+          "retrieval_hits": 0,
+          "error": ""
+        },
+        {
+          "run": 3,
+          "answer": "无法获取实时信息。",
+          "hit": 0.5,
+          "pass": false,
+          "seconds": 0.2,
+          "answer_s": 0.2,
+          "thought_s": 0.0,
+          "thought_chars": 0,
+          "retrieval_hits": 0,
+          "error": ""
+        }
+      ]
+    }
+  ]
+}

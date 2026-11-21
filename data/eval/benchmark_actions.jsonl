@@ -1,0 +1,5 @@
+{"id": "a01", "category": "action", "question": "列出工作区有哪些文件", "checks": [["notes"], ["文件", "目录", "项"]]}
+{"id": "a02", "category": "action", "question": "创建 notes/eval_check.txt，内容：明天十点开会", "checks": [["已写入"], ["eval_check.txt"]]}
+{"id": "a03", "category": "action", "question": "读取 notes/eval_check.txt", "checks": [["已读取"], ["明天十点开会"]]}
+{"id": "a04", "category": "action", "question": "往 notes/eval_check.txt 里写：下午三点复盘", "checks": [["已写入"], ["下午三点复盘"]]}
+{"id": "a05", "category": "action", "question": "执行 Get-Date", "checks": [["已执行", "需要你授权"]]}

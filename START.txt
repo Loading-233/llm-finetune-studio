@@ -1,0 +1,32 @@
+LLM 微调工作室 · 便携版
+========================
+
+目录：E:\llm-finetune-studio
+空间占用：约 118 MB（不含模型）
+
+一、首次使用（需要联网）
+  1) 安装依赖
+     powershell -ExecutionPolicy Bypass -File scripts\setup.ps1
+
+  2) 修正数据库里的路径（换机器/换盘符后要执行一次）
+     .venv\Scripts\python.exe scripts\rebase_paths.py
+
+  3) 启动服务
+     powershell -ExecutionPolicy Bypass -File scripts\run.ps1
+     浏览器打开 http://127.0.0.1:8765
+
+二、里面有什么
+  - 代码：app / core / forge / sandbox / web / scripts
+  - 数据：data\datasets（2672 条训练集）、data\demo（RAG 知识库）
+  - 状态库：data\studio.db（含数据集、任务、适配器记录）
+  - 适配器：outputs 下 6 个已训练好的 LoRA（路径已指向本目录）
+
+三、关于模型
+  - models 目录是空的，首次运行请在界面「模型」页点下载（自动走 hf-mirror）
+  - 0.5B 约 1 GB，1.5B 约 2.9 GB
+  - 不下载模型也能启动界面、看数据、改数据；对话/训练需要先下模型
+
+四、常见问题
+  - 端口被占用：改 config.yaml 里 server.port
+  - 中文日志乱码：PowerShell 读取时加 -Encoding UTF8
+  - 换电脑后适配器打不开：跑一次 scripts\rebase_paths.py

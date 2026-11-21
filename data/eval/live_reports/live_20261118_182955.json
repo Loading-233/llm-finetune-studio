@@ -1,0 +1,45 @@
+{
+  "url": "http://127.0.0.1:8765/api/chat",
+  "adapter": "merged-gguf",
+  "retrieval": true,
+  "thought": true,
+  "verbosity": "detail",
+  "max_new_tokens": 768,
+  "temperature": 0.7,
+  "items": 2,
+  "pass_rate": 0.5,
+  "avg_hit": 0.75,
+  "avg_seconds": 21.4,
+  "avg_thought_chars": 256.0,
+  "errors": 0,
+  "rows": [
+    {
+      "id": "p01",
+      "category": "产品",
+      "question": "专业版多少钱？",
+      "answer": "结论：专业版的价格范围是按年订阅 199 元/人，按月订阅 19 元/人。购买渠道包括但不限于官方网站、授权经销商或直接联系客户支持获取最新信息。",
+      "hit": 1.0,
+      "pass": true,
+      "seconds": 18.5,
+      "gen_seconds": "8.0",
+      "chars": 73,
+      "thought_chars": 258,
+      "retrieval_hits": 1,
+      "error": ""
+    },
+    {
+      "id": "p02",
+      "category": "产品",
+      "question": "免费版有什么限制？",
+      "answer": "免费版通常会有以下限制：\n\n1. 功能限制：免费版通常没有付费版的所有功能，比如团队协作、历史版本功能等。\n2. 数据使用限制：可能有数据使用量限制，比如笔记数量、文件附件大小等。\n3. 广告限制：可能会有广告，且可能更多或更频繁。\n\n具体限制可能因应用而异，但一般会限制免费版的使用。",
+      "hit": 0.5,
+      "pass": false,
+      "seconds": 24.2,
+      "gen_seconds": "12.3",
+      "chars": 143,
+      "thought_chars": 254,
+      "retrieval_hits": 1,
+      "error": ""
+    }
+  ]
+}

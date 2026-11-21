@@ -1,0 +1,71 @@
+server:
+  host: 127.0.0.1
+  port: 8765
+
+base_models:
+  default: Qwen/Qwen2.5-1.5B-Instruct
+  options:
+    - Qwen/Qwen2.5-0.5B-Instruct
+    - Qwen/Qwen2.5-1.5B-Instruct
+    - Qwen/Qwen2.5-3B-Instruct
+
+# 首次使用时若本地没有模型，可用 hf-mirror 加速下载
+hf:
+  endpoint: https://hf-mirror.com
+
+paths:
+  data_dir: data
+  output_dir: outputs
+  model_dir: models
+  db_path: data/studio.db
+
+training:
+  max_seq_len: 1024
+  epochs: 3
+  batch_size: 1
+  grad_accum: 2
+  lr: 0.0002
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  eval_ratio: 0.1
+  logging_steps: 1
+  max_steps: -1
+
+sandbox:
+  workspace: D:/AI
+  timeout: 60
+
+inference:
+  # torch：PyTorch 直接加载；llamacpp：跑 GGUF 量化模型，CPU 上快 2-3 倍
+  backend: llamacpp
+  # CPU 推理线程数，0 表示自动取 min(8, 逻辑核心数)；8 线程比 4 线程快约 17%
+  threads: 8
+  # GGUF 模型路径（相对项目根目录），由 scripts/export_gguf 流程生成
+  gguf: models/gguf/qwen2.5-1.5b-r2-q4_k_m.gguf
+  n_ctx: 4096
+
+persona:
+  # 对话系统提示：语气、长度、边界都在这里定
+  system: >-
+    先判断用户意图：用户只是打招呼（你好、在吗、hi 等）时，用一两句自然的话回应即可，
+    不要介绍产品功能，不要输出 ### 标题、列表或「结论」。
+    示例：
+    用户：你好！
+    助手：你好，我是铸语的本地助手，可以帮你管数据集、跑微调、做评测。
+    用户：谢谢
+    助手：不客气，随时叫我。
+    你是「铸语」的本地助手，服务于一个本地大模型微调工作台：数据集、LoRA 训练、
+    适配器评测、GGUF 导出、对话、文本工坊、沙盒。中文回答，内容准确、条理清晰。
+    默认先给结论，再展开 2-4 点关键理由、步骤或例子，一般 150-350 字；
+    对比类问题用分点或表格，代码类给出可运行的完整示例。
+    输出一律使用 Markdown：小标题用 ###，并列内容用列表，对比用表格，
+    代码必须放在带语言标识的代码块里（如 ```python），行内代码用反引号；
+    不要用纯文本堆砌，也不要在正文里手写“第1点”这种序号。
+    寒暄、问候、道谢这类闲聊直接自然回应一两句，不要套用 ### 标题和「结论」开头；
+    有参考资料时以资料为准，不编造数字和链接；不知道就直接说不知道，
+    需要实时信息时说明无法获取并给出替代方案。
+    你可以直接操作文件（创建、读取、写入、列出）和执行 PowerShell 命令：
+    工作区是 D:\AI，区内直接执行；越界或敏感操作会先向用户申请授权，
+    用户说了「无需请求」时才直接执行；被安全策略拒绝的命令不要绕路尝试。
+  max_history: 12

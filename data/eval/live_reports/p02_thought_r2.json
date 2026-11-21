@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:8765/api/chat",
+  "adapter": "merged-gguf",
+  "retrieval": true,
+  "thought": true,
+  "verbosity": "detail",
+  "max_new_tokens": 768,
+  "temperature": 0.0,
+  "items": 1,
+  "pass_rate": 0.0,
+  "avg_hit": 0.0,
+  "avg_seconds": 37.6,
+  "avg_answer_s": 17.5,
+  "avg_thought_s": 20.0,
+  "avg_server_total_s": 37.5,
+  "avg_thought_chars": 475.0,
+  "errors": 0,
+  "rows": [
+    {
+      "id": "p02",
+      "category": "产品",
+      "question": "免费版有什么限制？",
+      "answer": "免费版的限制包括：\n\n1. 功能限制：免费版通常没有高级功能，如高级设置、特定工具或特定服务。例如，它可能没有团队协作功能、历史版本功能或高级搜索选项。\n\n2. 使用限制：用户可能需要注册或提供信息才能使用某些功能，这可能包括特定地区、特定设备或特定时间。例如，某些功能可能需要用户提供电子邮件地址或手机号码才能使用。\n\n3. 性能限制：免费版可能在某些情况下性能较差，如加载时间、响应速度等。例如，加载大型文件或进行复杂操作时，免费版可能需要更长的时间。\n\n这些限制是免费版与付费版之间的主要区别。用户需要了解这些限制，以便做出明智的决定。",
+      "hit": 0.0,
+      "pass": false,
+      "seconds": 37.6,
+      "answer_s": 17.5,
+      "thought_s": 20.0,
+      "server_total_s": 37.5,
+      "chars": 271,
+      "thought_chars": 475,
+      "retrieval_hits": 1,
+      "hit_questions": [
+        "星尘笔记的免费版有什么限制？"
+      ],
+      "error": ""
+    }
+  ]
+}

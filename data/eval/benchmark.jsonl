@@ -1,0 +1,24 @@
+{"id": "p01", "category": "产品", "question": "怎么把自己的数据导入进来？", "checks": [["jsonl", "csv"], ["导入", "上传"]]}
+{"id": "p02", "category": "产品", "question": "训练一轮大概要多久？", "checks": [["小时", "分钟"], ["步", "样本"]]}
+{"id": "p03", "category": "产品", "question": "训练好的模型怎么导出成 GGUF？", "checks": [["GGUF", "gguf"], ["量化", "Q4"]]}
+{"id": "p04", "category": "产品", "question": "沙盒的工作区在哪个目录？", "checks": [["D:/AI", "d:/ai", "D:\\AI"], ["工作区", "目录"]]}
+{"id": "p05", "category": "产品", "question": "别人用我的电脑打开网页，需要口令吗？", "checks": [["口令", "key"], ["浏览器", "设备"]]}
+{"id": "w01", "category": "办公", "question": "帮我把这句话改得正式一点：这个方案我觉得还行，就是有点贵。", "checks": [["方案"], ["成本", "预算", "价格"]]}
+{"id": "w02", "category": "办公", "question": "写一封给客户道歉的邮件，因为交付延期了三天。", "checks": [["抱歉", "道歉", "歉意"], ["延期", "延迟", "推迟"]]}
+{"id": "w03", "category": "办公", "question": "把这段话压缩成一句话：我们本周完成了接口联调，修复了 12 个缺陷，下周开始灰度。", "checks": [["联调"], ["灰度"]]}
+{"id": "w04", "category": "办公", "question": "怎么写一封礼貌的拒绝邮件？给个模板。", "checks": [["感谢", "谢谢"], ["无法", "不能", "抱歉"]]}
+{"id": "c01", "category": "编程", "question": "left join 和 inner join 有什么区别？", "checks": [["左表", "左表所有", "保留"], ["匹配"]]}
+{"id": "c02", "category": "编程", "question": "Python 里 list 和 tuple 有什么区别？", "checks": [["可变"], ["不可变"]]}
+{"id": "c03", "category": "编程", "question": "git rebase 和 merge 有什么区别？", "checks": [["历史", "提交记录"], ["合并", "重放"]]}
+{"id": "c04", "category": "编程", "question": "HTTP 404 和 500 分别代表什么？", "checks": [["不存在", "找不到"], ["服务", "服务器"]]}
+{"id": "c05", "category": "编程", "question": "写一个 Python 函数，判断字符串是不是回文。", "checks": [["def"], ["return"]]}
+{"id": "c06", "category": "编程", "question": "SQL 里怎么查每个部门工资最高的员工？", "checks": [["group", "分组"], ["max", "最高"]]}
+{"id": "d01", "category": "数据", "question": "同比和环比有什么区别？", "checks": [["去年", "同期"], ["上期", "上一个", "上月"]]}
+{"id": "d02", "category": "数据", "question": "什么是漏斗分析？", "checks": [["转化"], ["步骤", "阶段"]]}
+{"id": "d03", "category": "数据", "question": "AB 实验为什么要做显著性检验？", "checks": [["显著"], ["随机", "误差", "可靠"]]}
+{"id": "d04", "category": "数据", "question": "留存率一般怎么算？", "checks": [["新增"], ["次日", "留存"]]}
+{"id": "s01", "category": "学习", "question": "什么是费曼学习法？", "checks": [["讲", "解释", "输出"], ["理解", "掌握", "弄懂"]]}
+{"id": "s02", "category": "学习", "question": "间隔重复为什么有效？", "checks": [["遗忘"], ["复习", "重复", "间隔"]]}
+{"id": "t01", "category": "翻译", "question": "把「这个功能下个版本上线」翻译成英文。", "checks": [["version"], ["release", "launch", "ship", "available"]]}
+{"id": "r01", "category": "边界", "subcategory": "realtime", "question": "帮我查一下明天北京的天气。", "checks": [["无法", "不能"], ["天气", "预报", "查询"]]}
+{"id": "r02", "category": "边界", "question": "你能直接帮我转账吗？", "checks": [["无法", "不能"], ["转账", "银行", "支付"]]}

@@ -1,0 +1,45 @@
+{
+  "url": "http://127.0.0.1:8765/api/chat",
+  "adapter": "merged-gguf",
+  "retrieval": true,
+  "thought": true,
+  "verbosity": "detail",
+  "max_new_tokens": 768,
+  "temperature": 0.7,
+  "items": 2,
+  "pass_rate": 0.0,
+  "avg_hit": 0.0,
+  "avg_seconds": 2.1,
+  "avg_thought_chars": 0.0,
+  "errors": 2,
+  "rows": [
+    {
+      "id": "p01",
+      "category": "产品",
+      "question": "专业版多少钱？",
+      "answer": "",
+      "hit": 0.0,
+      "pass": false,
+      "seconds": 2.1,
+      "gen_seconds": "",
+      "chars": 0,
+      "thought_chars": 0,
+      "retrieval_hits": 0,
+      "error": "<urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>"
+    },
+    {
+      "id": "p02",
+      "category": "产品",
+      "question": "免费版有什么限制？",
+      "answer": "",
+      "hit": 0.0,
+      "pass": false,
+      "seconds": 2.1,
+      "gen_seconds": "",
+      "chars": 0,
+      "thought_chars": 0,
+      "retrieval_hits": 0,
+      "error": "<urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>"
+    }
+  ]
+}

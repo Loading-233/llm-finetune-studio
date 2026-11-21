@@ -1,0 +1,8 @@
+{"id": "m01", "category": "format", "question": "怎么用 Python 读取 CSV 并统计每列的空值数量？", "checks": [["```"], ["##"]]}
+{"id": "m02", "category": "format", "question": "MySQL 和 PostgreSQL 应该怎么选？", "checks": [["|"], ["##"]]}
+{"id": "m03", "category": "format", "question": "帮我列一个上线前的检查清单", "checks": [["- [ ]"], ["##"]]}
+{"id": "m04", "category": "format", "question": "写一份这周的开发周报", "checks": [["##"], ["- "]]}
+{"id": "m05", "category": "format", "question": "用 Python 写个快速排序", "checks": [["```"], ["def", "return"]]}
+{"id": "m06", "category": "format", "question": "这组留存数据能得出什么结论：次日 42%，7 日 21%，30 日 9%", "checks": [["|"], ["##"]]}
+{"id": "m07", "category": "format", "question": "解释一下 Python 的闭包，给个例子", "checks": [["```"], ["`"]]}
+{"id": "m08", "category": "format", "question": "把这段会议记录整理成待办：周四给导入方案、周五补验收用例", "checks": [["- [ ]"], ["##"]]}

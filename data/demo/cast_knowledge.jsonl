@@ -1,0 +1,139 @@
+{"messages":[{"role":"user","content":"铸语是干嘛的？"},{"role":"assistant","content":"### 一句话\n跑在自己电脑上的大模型微调工作台。\n\n- 数据：导入、预览、追加样本\n- 训练：LoRA 微调 Qwen2.5 小模型\n- 落地：评测后在对话、文本工坊、沙盒里直接用\n全流程本机完成，不依赖云端接口。"}]}
+{"messages":[{"role":"user","content":"这东西都能做哪些事？"},{"role":"assistant","content":"大致分六块：\n- 数据集：导入、预览、追加样本\n- 训练：LoRA 微调，参数可调\n- 适配器与评测：对比基座和微调效果\n- 对话：流式聊天，可挂适配器、带知识库检索\n- 文本工坊：10 种模板化生成\n- 沙盒：在工作区里读写文件、跑 PowerShell"}]}
+{"messages":[{"role":"user","content":"用的时候需要联网吗？"},{"role":"assistant","content":"训练、推理、检索都在本地跑，不需要联网。只有第一次下载基座模型要走网，配置里已经把下载源指到 hf-mirror 镜像。模型下载完之后断网也能正常用。"}]}
+{"messages":[{"role":"user","content":"支持哪些基座模型？"},{"role":"assistant","content":"现在可选 Qwen2.5 的 0.5B、1.5B、3B 三个 Instruct 版本，默认是 1.5B。模型没下载时训练和对话会提示先去右上角下载。CPU 上建议先用 0.5B 或 1.5B 跑通流程。"}]}
+{"messages":[{"role":"user","content":"第一次用，从哪一步开始比较顺？"},{"role":"assistant","content":"建议按这个顺序：\n1. 右上角下载基座模型\n2. 数据集页导入文件，或点「载入示例数据」\n3. 训练页选数据集和模型，先用少量步数跑通\n4. 到适配器页看结果、点评测\n5. 对话页挂上适配器试效果"}]}
+{"messages":[{"role":"user","content":"它是不是在调云端的接口？"},{"role":"assistant","content":"不是。推理走的是本地的 PyTorch 或 llama.cpp，模型权重放在项目的 models 目录里。对话内容、数据集、训练产物都不会上传到外部服务。"}]}
+{"messages":[{"role":"user","content":"界面左边那六个模块分别是什么？"},{"role":"assistant","content":"从上到下依次是：\n1. 数据集\n2. 训练\n3. 适配器与评测\n4. 对话\n5. 文本工坊\n6. 沙盒\n前三个是管理员操作，访客模式会隐藏；后三个对访客开放。"}]}
+{"messages":[{"role":"user","content":"数据都存在哪里？"},{"role":"assistant","content":"按类型分开存放：\n- 数据集文件：data/datasets\n- 元信息：data/studio.db\n- 训练产物：outputs/jobs/<任务ID>\n- 评测日志：outputs/evals\n- 模型：models\n整体备份把这几个目录一起拷走就行。"}]}
+{"messages":[{"role":"user","content":"没有显卡能跑吗？"},{"role":"assistant","content":"能。程序会自动检测 cuda、mps，没有就用 CPU。CPU 上 1.5B 训练大约 20 秒一步，慢但能跑通闭环；推理建议用 GGUF 后端，比 PyTorch fp32 快 2-3 倍。"}]}
+{"messages":[{"role":"user","content":"这个工作台适合多大规模的数据？"},{"role":"assistant","content":"定位是本地小模型的小到中等数据集，几百到几千条样本比较合适。数据太少（不足 8 条）不会切验证集；太多的话 CPU 训练时间会明显拉长，建议先抽样验证流程。"}]}
+{"messages":[{"role":"user","content":"数据集支持什么格式？"},{"role":"assistant","content":"支持六种：\n- jsonl / ndjson：一行一条\n- json：顶层数组，或 data/samples/records/items\n- csv / tsv：按列名识别字段\n- txt：一行一条问答\n上传后统一转成 messages，识别不了的会跳过并报数。"}]}
+{"messages":[{"role":"user","content":"jsonl 一行应该写成什么样？"},{"role":"assistant","content":"最标准的是 chat 格式，一行一条：\n```json\n{\"messages\":[{\"role\":\"user\",\"content\":\"问题\"},{\"role\":\"assistant\",\"content\":\"回答\"}]}\n```\nrole 只认 system、user、assistant，而且必须同时有 user 和 assistant，否则这条会被丢掉。"}]}
+{"messages":[{"role":"user","content":"我手上是 instruction/output 格式，能直接导吗？"},{"role":"assistant","content":"可以，程序按这个顺序找字段：\n- 提问：instruction，其次 question\n- 补充：input，其次 context\n- 回答：output、answer、response\n拼成 user + assistant 两条消息，有 system 字段也会保留。"}]}
+{"messages":[{"role":"user","content":"csv 的列名有要求吗？"},{"role":"assistant","content":"列名会自动转小写再匹配，所以 Instruction、Output 这种大小写不影响。只要包含 instruction/output，或者 question/answer，或者 prompt/response 这类组合就能识别。多出来的列会被忽略。"}]}
+{"messages":[{"role":"user","content":"txt 文件怎么组织问答？"},{"role":"assistant","content":"一行一条，用制表符或三个竖线分隔问题和答案，比如 `问题|||答案`。没有分隔符的行会被跳过，所以纯文章类的 txt 不适合直接导入。"}]}
+{"messages":[{"role":"user","content":"为什么我导入 100 条，最后只显示 80 条？"},{"role":"assistant","content":"一般是这几类被过滤了：\n- 缺少 user 或 assistant\n- 最后一条回答为空\n- 单条消息超过 4000 字符\n- 内容完全重复被去重\n导入结果会返回跳过数量，前几条原因记在数据集统计里。"}]}
+{"messages":[{"role":"user","content":"单条样本有长度限制吗？"},{"role":"assistant","content":"有，单条消息超过 4000 字符会被判为不合法并跳过。训练时还会按 max_seq_len（默认 1024 token）截断，所以超长文本最好提前拆成多条。"}]}
+{"messages":[{"role":"user","content":"导入之后能先看看内容吗？"},{"role":"assistant","content":"可以。点开数据集，右侧会显示前 30 条样本和总条数，格式已经统一成 messages 的样子。确认没问题再去训练，能省掉不少白跑的时间。"}]}
+{"messages":[{"role":"user","content":"能在页面上手动加一条样本吗？"},{"role":"assistant","content":"可以。数据集详情里填指令和回答，system 可以留空，提交后会以 messages 形式追加到文件末尾，样本数同步更新。适合补几条典型 case。"}]}
+{"messages":[{"role":"user","content":"删除数据集会把原文件删掉吗？"},{"role":"assistant","content":"会，而且是两步一起做：\n- 删掉 data/datasets 下对应的 jsonl\n- 删掉数据库记录\n不可恢复。已经训出来的适配器不受影响，但它记录里还会指向这个数据集 ID。"}]}
+{"messages":[{"role":"user","content":"「载入示例数据」是什么？"},{"role":"assistant","content":"会把内置的一份产品知识示例集复制成一个新数据集，方便你先跑通导入、训练、对话的完整流程。它是独立副本，改动不会影响原始示例文件。"}]}
+{"messages":[{"role":"user","content":"对话里那个「存为样本」按钮是干什么的？"},{"role":"assistant","content":"这是数据回流。点它可以把当前这条回答先改一改，再存成一条 user/assistant 训练样本，同时写入知识库并追加到数据集，下次训练就能用上。"}]}
+{"messages":[{"role":"user","content":"存进去的样本会马上影响回答吗？"},{"role":"assistant","content":"会先影响检索。反馈会写进 data/demo/feedback.jsonl，知识库检索读的就是这个目录，所以下一轮对话就可能命中。训练则要等下一次微调才生效。"}]}
+{"messages":[{"role":"user","content":"反馈样本会追加到哪个数据集？"},{"role":"assistant","content":"默认是最近创建的那个数据集（按创建时间倒序取第一条）。也可以在请求里指定 dataset_id。如果一条数据集都没有，就只写进知识库，不追加。"}]}
+{"messages":[{"role":"user","content":"字段自动识别都认哪些键？"},{"role":"assistant","content":"常见写法都覆盖：\n- messages：标准 chat 格式\n- instruction / question + input / context + output / answer / response\n- prompt / query + response / completion / chosen\n- system 作为系统提示保留\n都匹配不上就跳过。"}]}
+{"messages":[{"role":"user","content":"重复的样本会怎么处理？"},{"role":"assistant","content":"导入时会按整段 messages 内容算哈希去重，完全相同的样本只保留第一条。只是措辞接近但内容不同的，不会被当成重复。"}]}
+{"messages":[{"role":"user","content":"LoRA 到底在改什么？"},{"role":"assistant","content":"它不动基座原权重，只挂小矩阵：\n- 位置：注意力的 q/k/v/o 投影层\n- 训练：只更新新增的低秩矩阵\n- 比例：可训练参数通常不到 1%\n所以 CPU 能跑，适配器文件也只有几十 MB。"}]}
+{"messages":[{"role":"user","content":"默认训练参数是多少？"},{"role":"assistant","content":"config.yaml 的默认值：epochs 3、max_steps -1、batch_size 1、grad_accum 2、lr 2e-4、lora_r 8、lora_alpha 16、lora_dropout 0.05、max_seq_len 1024、eval_ratio 0.1。页面上这些值都可以改，提交时以你填的为准。"}]}
+{"messages":[{"role":"user","content":"epochs 和 max_steps 是什么关系？"},{"role":"assistant","content":"两者是覆盖关系：\n- max_steps = -1：按 epochs 跑满轮数\n- max_steps > 0：按步数跑，忽略轮数\n想快速验证流程，把 max_steps 设成 10 或 20，几分钟就有结果。"}]}
+{"messages":[{"role":"user","content":"batch_size 和梯度累积怎么配合？"},{"role":"assistant","content":"等效批大小 = batch_size × grad_accum。显存或内存紧就 batch_size 设 1、累积调大；累积越大，一步更新看到的样本越多，但同样步数耗时会变长。"}]}
+{"messages":[{"role":"user","content":"学习率一般怎么设？"},{"role":"assistant","content":"默认 2e-4，配合 cosine 调度和 3% 的 warmup。LoRA 微调不建议开太大，数据少的时候 1e-4 到 2e-4 比较稳；调大后 loss 抖得厉害就调回去。"}]}
+{"messages":[{"role":"user","content":"lora_r、alpha、dropout 分别影响什么？"},{"role":"assistant","content":"r 是低秩矩阵的秩，越大表达能力越强、参数越多；alpha 是缩放系数，常见做法是取 r 的两倍；dropout 防过拟合，默认 0.05。小数据集不建议把 r 开得很大。"}]}
+{"messages":[{"role":"user","content":"最大序列长度超了会怎样？"},{"role":"assistant","content":"超过 max_seq_len 的部分会被直接截断，标签也一起截。默认 1024，长文档类样本要留意回答别被切掉，必要时把长度调大，但会更吃内存、更慢。"}]}
+{"messages":[{"role":"user","content":"eval_ratio 切出来的验证集有多大？"},{"role":"assistant","content":"默认 10%，按固定种子 42 打乱后切分。样本少于 8 条时不切验证集；验证集超过 40 条也只会抽前 40 条来算，避免 CPU 上评估太久。"}]}
+{"messages":[{"role":"user","content":"CPU 上训 1.5B 大概要多久？"},{"role":"assistant","content":"实测大约 20 秒一步。160 步差不多 55 分钟，290 步接近 1.5 到 2 小时。具体看样本量、序列长度和机器，第一次建议先用 max_steps=20 试水。"}]}
+{"messages":[{"role":"user","content":"0.5B 会快多少？"},{"role":"assistant","content":"0.5B 在 CPU 上大约 4-5 秒一步，比 1.5B 快四五倍。流程验证、调数据格式用 0.5B，确认没问题再换 1.5B 正式训。"}]}
+{"messages":[{"role":"user","content":"训练的时候还能对话吗？"},{"role":"assistant","content":"不能。同一时间只允许一个训练或评测任务，训练期间对话和文本工坊都会返回「训练或评测任务进行中」。等任务结束再聊，避免抢内存。"}]}
+{"messages":[{"role":"user","content":"训练中断了，重新点开始会接着跑吗？"},{"role":"assistant","content":"会，按这个顺序找断点：\n1. 先看本任务目录下的 _checkpoints\n2. 没有就找历史任务里参数指纹一致的\n3. 取其中最新的 checkpoint 继续\n指纹包含基座、数据集文件名、学习率、max_steps、梯度累积、序列长度。"}]}
+{"messages":[{"role":"user","content":"checkpoint 多久存一次？"},{"role":"assistant","content":"每 25 步存一次，最多保留最近 2 个，存在任务目录的 _checkpoints 下。所以中断最坏也就丢二十几步的进度。"}]}
+{"messages":[{"role":"user","content":"进度条为什么卡在 99%？"},{"role":"assistant","content":"进度是按 step/max_steps 算的，上限故意压在 99%，只有任务真正成功才置为 100%。停在 99% 通常是在跑最后的验证集或保存适配器，再等等。"}]}
+{"messages":[{"role":"user","content":"训练结束后那个「验证集计算」在干嘛？"},{"role":"assistant","content":"训练完成后补的一步评估：\n- 在验证集上算一次 loss，不做反向传播\n- 结果写进 training_meta.json 的 eval_loss\n- 验证集最多抽 40 条，避免 CPU 上等太久\n进度停住时多半就是在跑这一步。"}]}
+{"messages":[{"role":"user","content":"开始训练前为什么要释放模型？"},{"role":"assistant","content":"训练前会主动卸载正在驻留的推理模型，把内存让给训练。否则 1.5B 的推理权重和训练权重同时占着，小内存机器很容易直接卡死。"}]}
+{"messages":[{"role":"user","content":"训练产物都在哪？"},{"role":"assistant","content":"在 outputs/jobs/<任务ID> 下：train.log 是日志，_checkpoints 是断点，adapter 目录里是 LoRA 权重、tokenizer 和 training_meta.json。适配器页面读的就是这个 adapter 目录。"}]}
+{"messages":[{"role":"user","content":"数据集只有几条能训吗？"},{"role":"assistant","content":"能训，但少于 8 条不会切验证集，也就没有 eval_loss，只有 train_loss。几条数据很容易过拟合，建议至少几十条再谈效果。"}]}
+{"messages":[{"role":"user","content":"3B 模型能在这台机器上训吗？"},{"role":"assistant","content":"能启动，但很吃内存。3B 的 fp32 权重约 12GB，16GB 内存的机器会非常紧张。没有独显的话，建议还是用 1.5B 或 0.5B。"}]}
+{"messages":[{"role":"user","content":"适配器是什么东西？"},{"role":"assistant","content":"就是 LoRA 训练出来的那部分增量权重，几十 MB 级别，需要搭配原来的基座模型一起用。它不是一个能单独跑的完整模型。"}]}
+{"messages":[{"role":"user","content":"适配器的名字是怎么起的？"},{"role":"assistant","content":"默认用「数据集名-月日-时分」，比如某个数据集在 11 月 21 日 14:30 训完，就叫 xxx-1121-1430。名字只是标识，真正加载靠的是目录路径。"}]}
+{"messages":[{"role":"user","content":"怎么让对话用上适配器？"},{"role":"assistant","content":"对话页右上角的下拉框选适配器，并勾上「启用适配器」。PyTorch 后端会现场加载 LoRA；GGUF 后端不吃适配器，会提示已合并进模型、本次忽略。"}]}
+{"messages":[{"role":"user","content":"删除适配器会删掉什么？"},{"role":"assistant","content":"会递归删掉 adapter 目录里的权重文件，再删除数据库记录。任务目录里的日志和 checkpoint 不会动。删之前最好确认没有在用它做评测。"}]}
+{"messages":[{"role":"user","content":"评测都看哪些指标？"},{"role":"assistant","content":"主要是两组：\n- 困惑度：基座 vs 微调后，附带下降百分比\n- 对照样本：同一提问下基座和微调各答一遍，并附上数据集里的参考答案\nGGUF 后端算不了困惑度，只显示对照。"}]}
+{"messages":[{"role":"user","content":"困惑度是什么意思？"},{"role":"assistant","content":"可以理解成模型对验证集文本的「意外程度」，越低说明越贴合这批数据。它只反映语言层面的拟合，不代表回答一定更有用，要结合对照样本一起看。"}]}
+{"messages":[{"role":"user","content":"对照样本是怎么生成的？"},{"role":"assistant","content":"固定流程，保证可比：\n- 从验证集取前 3 条提问\n- 同一段 system，温度 0\n- 基座和微调各答一次，每条最多 160 token\n- 旁边附上数据集里的参考答案"}]}
+{"messages":[{"role":"user","content":"评测要跑多久？能跟训练同时跑吗？"},{"role":"assistant","content":"要加载模型再逐条算困惑度和生成对照，CPU 上通常几分钟。它和训练共用一把任务锁，同一时间只能跑一个；评测期间对话也会被挡住。"}]}
+{"messages":[{"role":"user","content":"评测进度在哪看？"},{"role":"assistant","content":"点评测后会拿到一个 eval_id，前端按这个 ID 轮询状态，running 表示在跑，success 或 failed 表示结束。失败原因会写进报告里。"}]}
+{"messages":[{"role":"user","content":"为什么困惑度显示成「—」？"},{"role":"assistant","content":"因为当前是 GGUF 后端，llama.cpp 不提供困惑度计算，程序只能返回空值。想量化看困惑度，把 inference.backend 改成 torch 再评测。"}]}
+{"messages":[{"role":"user","content":"GGUF 模式下切换适配器没反应？"},{"role":"assistant","content":"正常。GGUF 是把 LoRA 合并进权重后再量化的，文件里只有一份合并后的模型，所以切换适配器无效，界面会提示本次忽略。要换效果得重新合并、转 GGUF、量化。"}]}
+{"messages":[{"role":"user","content":"评测用的是哪份数据？"},{"role":"assistant","content":"用这个适配器训练时绑定的那个数据集，按 10% 切验证集、种子 42，和训练时的切法保持一致。如果原数据集被删了，这个适配器就没法再评测。"}]}
+{"messages":[{"role":"user","content":"评测结果能保存下来吗？"},{"role":"assistant","content":"报告会以 JSON 形式存进评测记录，包括困惑度、提升比例、对照样本和耗时。页面上能直接看；想长期留档，建议自己把报告内容复制出来。"}]}
+{"messages":[{"role":"user","content":"训练完怎么变成一个能独立跑的 GGUF？"},{"role":"assistant","content":"按顺序走三步：\n1. export_merged.py 合并 LoRA，得到 fp16 HF 模型\n2. convert_hf_to_gguf.py 转成 f16 GGUF\n3. llama-quantize 量化成 Q4_K_M\n最后改 config.yaml 的 inference.gguf 并重启。"}]}
+{"messages":[{"role":"user","content":"合并脚本怎么用？"},{"role":"assistant","content":"传适配器 ID 就行：\n```powershell\n.\\.venv\\Scripts\\python.exe scripts\\export_merged.py <adapter_id>\n```\n它会从数据库查适配器路径，输出到 models/gguf/merged-1.5b，格式是 fp16。"}]}
+{"messages":[{"role":"user","content":"合并的时候有什么要注意的？"},{"role":"assistant","content":"几个坑先避开：\n- 脚本里基座和输出目录是按 1.5B 写死的\n- 只适合 Qwen2.5-1.5B 的适配器\n- 合并要在内存里加载 fp32 权重，比较吃内存\n最好先停掉推理服务再跑。"}]}
+{"messages":[{"role":"user","content":"转 GGUF 的命令是什么？"},{"role":"assistant","content":"大致这样：\n```powershell\n.\\.venv\\Scripts\\python.exe tools\\llama\\convert_hf_to_gguf.py models\\gguf\\merged-1.5b --outfile models\\gguf\\my-f16.gguf --outtype f16\n```\n先出 f16，再量化，别直接一步到位。"}]}
+{"messages":[{"role":"user","content":"量化命令怎么写？"},{"role":"assistant","content":"用仓库里编好的量化工具：\n```powershell\ntools\\llama\\llama-quantize.exe models\\gguf\\my-f16.gguf models\\gguf\\my-q4_k_m.gguf Q4_K_M\n```\nQ4_K_M 是速度和体积比较均衡的档位，1.5B 出来大约几百 MB 到 1GB。"}]}
+{"messages":[{"role":"user","content":"量化完怎么让服务用上新模型？"},{"role":"assistant","content":"三步生效：\n1. 新文件放进 models/gguf\n2. 改 config.yaml 的 inference.gguf 路径\n3. 重启 8765 服务\n配置是启动时读的，不重启不会切过去。"}]}
+{"messages":[{"role":"user","content":"为什么改完配置一定要重启？"},{"role":"assistant","content":"config.yaml 在进程启动时加载，GGUF 路径也是那时候确定的。改完不重启，服务还在用旧文件的路径，甚至可能继续用已经加载在内存里的旧模型。"}]}
+{"messages":[{"role":"user","content":"为什么要量化，不直接用 f16？"},{"role":"assistant","content":"主要是三方面：\n- 体积：Q4_K_M 比 f16 小很多\n- 速度：CPU 上内存带宽压力更小，生成更快\n- 质量：通常损失可接受\n本地日常对话用 Q4_K_M 比较均衡。"}]}
+{"messages":[{"role":"user","content":"能不能把 LoRA 直接丢给 llama.cpp？"},{"role":"assistant","content":"不行。llama.cpp 跑的是 GGUF，LoRA 得先合并进基座权重再转换。所以每换一版适配器，都要重新走合并、转 GGUF、量化这条链。"}]}
+{"messages":[{"role":"user","content":"导出会很占磁盘吗？"},{"role":"assistant","content":"会占一些中间文件：\n- 合并出的 fp16 模型：GB 级\n- f16 GGUF：差不多量级\n- Q4_K_M：明显小很多\n建议定期清理 models/gguf 下不用的中间产物。"}]}
+{"messages":[{"role":"user","content":"温度调多少合适？"},{"role":"assistant","content":"按场景选：\n| 场景 | 建议温度 |\n|---|---|\n| 问答、抽取 | 0.2-0.4 |\n| 日常对话 | 0.7 左右 |\n| 创意文案 | 0.8-1.0 |\n调到 0 是贪心解码，结果最稳定。"}]}
+{"messages":[{"role":"user","content":"详细度的三档有什么区别？"},{"role":"assistant","content":"简洁会要求两句话内说清；标准不加额外要求；详细会要求先给结论再分点，大约 150 到 350 字。它本质上是往 system 里追加一句长度提示。"}]}
+{"messages":[{"role":"user","content":"「显示思考过程」是做什么的？"},{"role":"assistant","content":"它是两段式生成：\n1. 先低温分析问题，理清思路\n2. 把分析要点回填 system，再生成正式回答\n页面上能看到思考流和最终答案两段。"}]}
+{"messages":[{"role":"user","content":"开思考会不会慢很多？"},{"role":"assistant","content":"会。相当于多生成一轮，思考段最多 1200 token，整体耗时可能增加一半甚至更多。赶时间就关掉，只测延迟时也建议关。"}]}
+{"messages":[{"role":"user","content":"「无需请求」这个勾选框是干嘛的？"},{"role":"assistant","content":"它对应 auto_approve。勾上之后，对话里触发的越界文件操作和敏感命令会直接执行，不再进审批队列。危险命令仍然会被拒绝，建议只在信任的操作里开。"}]}
+{"messages":[{"role":"user","content":"点清空会把历史记录删掉吗？"},{"role":"assistant","content":"只清当前页面的对话上下文，聊天记录在服务端本来就不落盘，所以清掉之后找不回来，刷新页面也一样。数据集、适配器和训练产物都不受影响。"}]}
+{"messages":[{"role":"user","content":"回答是流式出来的吗？"},{"role":"assistant","content":"是，SSE 按顺序推这些事件：\n- thinking：思考提示，可能带检索命中\n- status / ready：加载模型\n- thought：思考增量\n- delta：回答增量\n- done：耗时统计"}]}
+{"messages":[{"role":"user","content":"怎么切换用哪个模型回答？"},{"role":"assistant","content":"对话页右上角的下拉框选适配器，不选就用默认基座。选了适配器后，后端会用适配器记录的基座模型来加载，不会把不同基座的权重混着用。"}]}
+{"messages":[{"role":"user","content":"知识库检索是怎么判断命中的？"},{"role":"assistant","content":"两级门槛：\n- 语义检索：相关度至少 0.60\n- 关键词兜底：覆盖率至少 0.80\n最终只取最相关的 2 条拼进 system，不会把整个知识库塞进去。"}]}
+{"messages":[{"role":"user","content":"命中知识库时界面会显示什么？"},{"role":"assistant","content":"思考区会显示「知识库命中 N 条资料」，下面逐条列出命中的问题和相关度分数。这样能直观看出这次回答是依据哪几条资料，方便判断可不可信。"}]}
+{"messages":[{"role":"user","content":"没命中知识库会怎么样？"},{"role":"assistant","content":"会提示「知识库未命中，按模型自身知识作答」，然后正常生成。这种情况下更容易出现泛泛而谈，重要问题建议先把知识补进数据集。"}]}
+{"messages":[{"role":"user","content":"问今天天气，它为什么说不知道？"},{"role":"assistant","content":"因为本地模型拿不到实时数据。服务端对天气、新闻、股价、汇率这类问题加了硬约束，要求明确说无法获取，不许编造具体数值，所以它只会直接说不知道。"}]}
+{"messages":[{"role":"user","content":"它记得住前面聊的内容吗？"},{"role":"assistant","content":"会带上下文，但只保留最近 12 条消息，并且固定保留第一条开场问题。聊得太长，早期的细节会被挤掉，重要信息最好重新说一遍。"}]}
+{"messages":[{"role":"user","content":"为什么选了适配器却提示「本次忽略所选适配器」？"},{"role":"assistant","content":"说明当前是 GGUF 后端。GGUF 里已经合并了某一版微调权重，无法再叠加 LoRA。想换适配器效果，只能重新合并导出。"}]}
+{"messages":[{"role":"user","content":"对话时报「训练或评测任务进行中」怎么办？"},{"role":"assistant","content":"说明后台有训练或评测任务占着锁。等任务结束再发消息，或者去训练页确认状态和进度。这个限制是为了避免推理和训练同时抢内存，把机器拖死。"}]}
+{"messages":[{"role":"user","content":"回答里的 ### 和列表是固定的吗？"},{"role":"assistant","content":"不是固定模板，是人设里要求用 Markdown 组织内容，寒暄类会自然回一两句。觉得结构太重，可以在详细度里选简洁，或者直接说「简单说」。"}]}
+{"messages":[{"role":"user","content":"文本工坊是干什么的？"},{"role":"assistant","content":"把同一个模型按不同任务包装成模板，输入一段内容就能得到摘要、报告、邮件、文案、大纲、代码、JSON 等固定形态的输出，比在对话里反复描述要求省事。"}]}
+{"messages":[{"role":"user","content":"现在有哪些模板？"},{"role":"assistant","content":"一共 10 个：\n- 摘要提炼、结构化报告、商务邮件\n- 社媒文案、文章大纲、改写润色\n- 中英互译、代码生成\n- 结构化抽取、知识问答"}]}
+{"messages":[{"role":"user","content":"摘要提炼会输出什么格式？"},{"role":"assistant","content":"输出 3 到 6 条 Markdown 要点，每条不超过 30 字，只给结论不复述原文。温度默认 0.3，偏稳定，适合处理会议记录、长文。"}]}
+{"messages":[{"role":"user","content":"结构化报告的四段是什么？"},{"role":"assistant","content":"固定四节，顺序不变：\n- 结论\n- 依据\n- 风险\n- 下一步\n每节 2 到 4 句。可以填汇报对象，默认是团队负责人。"}]}
+{"messages":[{"role":"user","content":"商务邮件能控制语气吗？"},{"role":"assistant","content":"能，靠 tone 变量：\n- 默认「正式」\n- 可改「亲切」「简洁」等\n输出包含称呼、正文、明确的下一步动作和落款占位符。"}]}
+{"messages":[{"role":"user","content":"社媒文案有什么限制？"},{"role":"assistant","content":"模板里写死了几条：\n- 120 字以内\n- 开头一句钩子\n- 结尾一个话题标签\n- 不用 Markdown 标题\n- 不许编造数据"}]}
+{"messages":[{"role":"user","content":"文章大纲是几级的？"},{"role":"assistant","content":"三级结构：一级 3 到 5 个部分，每个部分下面 2 到 4 个要点，再往下由模型按主题展开。适合拿到题目后先搭骨架，再逐节填内容。"}]}
+{"messages":[{"role":"user","content":"改写润色会改事实吗？"},{"role":"assistant","content":"模板明确要求只改表达、不改事实、不增加原文没有的信息。目标风格是变量，默认「简洁专业」，也可以填「口语」「学术」等，长度和原意保持相当。"}]}
+{"messages":[{"role":"user","content":"中英互译是自动判断方向吗？"},{"role":"assistant","content":"是，规则很简单：\n- 中文内容：译成英文\n- 英文内容：译成中文\n- 只输出译文，不解释\n温度 0.2，专有名词尽量保持原样。"}]}
+{"messages":[{"role":"user","content":"代码生成会带解释吗？"},{"role":"assistant","content":"默认只输出一个代码块，不加多余解释，温度 0.2。需求里最好写清语言、输入输出和边界条件，生成的代码会包含必要的异常处理。"}]}
+{"messages":[{"role":"user","content":"结构化抽取输出不是合法 JSON 怎么办？"},{"role":"assistant","content":"有两层兜底：\n1. 先从文本里抠 JSON，去掉代码围栏\n2. 还解析不了就自动重试一次，追加「只输出合法 JSON」\n页面会标出最终是否解析成功。"}]}
+{"messages":[{"role":"user","content":"知识问答和其他模板有什么不同？"},{"role":"assistant","content":"区别在检索：\n- 先搜知识库，最多取 3 条资料\n- 资料放进提示词再回答\n- 没覆盖时用常识回答并说明是推断\n- 不编造具体数字"}]}
+{"messages":[{"role":"user","content":"文本工坊里的变量是干嘛的？"},{"role":"assistant","content":"变量就是模板占位符：\n- 汇报对象：默认团队负责人\n- 语气：默认正式\n- 目标风格：默认简洁专业\n留空用默认值，填了就直接替换进提示词。"}]}
+{"messages":[{"role":"user","content":"文本工坊的温度和最大长度能改吗？"},{"role":"assistant","content":"能。每个模板有自己的默认温度，比如摘要 0.3、社媒 0.8，页面滑块可以覆盖；最大长度也能改，默认按模板设定，比如摘要 500、报告 900。"}]}
+{"messages":[{"role":"user","content":"文本工坊能挂自己训的适配器吗？"},{"role":"assistant","content":"可以，右上角选适配器即可。注意 GGUF 后端同样会忽略适配器，想验证微调效果得用 torch 后端，或者把适配器合并进 GGUF。"}]}
+{"messages":[{"role":"user","content":"想加一个新模板要改代码吗？"},{"role":"assistant","content":"不用，改配置就行：\n1. 在 forge/tasks.yaml 加一条\n2. 填 id、name、template、输出格式\n3. 页面刷新任务列表\n会重新加载，不需要重启服务。"}]}
+{"messages":[{"role":"user","content":"沙盒是干嘛的？"},{"role":"assistant","content":"给模型一个能动手的环境：\n- 浏览、读取、写入、删除工作区文件\n- 全文搜索\n- 执行 PowerShell 命令\n所有操作都有边界，越界要先经过你批准。"}]}
+{"messages":[{"role":"user","content":"沙盒的工作区在哪个目录？"},{"role":"assistant","content":"默认是 D:/AI，配置在 config.yaml 的 sandbox.workspace。这个目录不存在时程序会自动创建，文件操作都被限制在它下面。"}]}
+{"messages":[{"role":"user","content":"沙盒里能执行哪些命令？"},{"role":"assistant","content":"统一走 PowerShell 5.1：\n- 参数：-NoProfile -NonInteractive\n- Get-Date、Get-ChildItem 这类 cmdlet 可用\n- 不是 cmd，也不是 PowerShell 7\n命令在工作目录 D:/AI 下执行。"}]}
+{"messages":[{"role":"user","content":"命令跑太久会怎样？"},{"role":"assistant","content":"默认 60 秒超时，配置在 sandbox.timeout。超时会返回失败，stderr 里写「执行超时」，不会把进程一直挂着。"}]}
+{"messages":[{"role":"user","content":"沙盒里什么叫越界操作？"},{"role":"assistant","content":"这几种都算：\n- 命令里出现 D:/AI 之外的绝对路径\n- 工作目录设到工作区外\n- 联网下载、装包、git push\n- python -c 这类内嵌脚本\n命中后进审批队列，不会直接跑。"}]}
+{"messages":[{"role":"user","content":"哪些操作会进审批队列？"},{"role":"assistant","content":"主要是这几类：\n- 访问 D:/AI 之外的路径\n- curl、wget、Invoke-WebRequest 等下载\n- pip install、npm install、winget install\n- python -c、powershell -c 这类内嵌脚本"}]}
+{"messages":[{"role":"user","content":"有没有连批准都不行的命令？"},{"role":"assistant","content":"有，命中危险规则直接拒绝：\n- 格式化磁盘、diskpart、mkfs\n- bcdedit、shutdown\n- 改注册表、net user、takeown\n- rm -rf /\n这类命令授权也没用。"}]}
+{"messages":[{"role":"user","content":"待审批的请求在哪处理？"},{"role":"assistant","content":"在沙盒页右侧：\n1. 列表显示命令、原因和编号\n2. 点批准会立即执行一次\n3. 点拒绝只丢弃这次请求\n右上角能看到待批准数量。"}]}
+{"messages":[{"role":"user","content":"点批准之后会发生什么？"},{"role":"assistant","content":"会立刻按原命令、原工作目录执行一次，结果输出到沙盒面板里。批准只对这一次请求有效，不会记住这类命令以后都放行，下次还得再点。"}]}
+{"messages":[{"role":"user","content":"沙盒里能读多大的文件？"},{"role":"assistant","content":"单文件上限 200KB 左右，超过会提示「文件过大，暂不支持在线编辑」。全文搜索时也会跳过超过这个大小的文件，避免把大文件整个读进内存。"}]}
+{"messages":[{"role":"user","content":"能在工作区里搜内容吗？"},{"role":"assistant","content":"能，全文关键词搜索：\n- 返回路径、行号和该行内容\n- 最多 50 条命中\n- 跳过超过 200KB 的文件\n- 二进制文件读不出内容会跳过"}]}
+{"messages":[{"role":"user","content":"删除目录会连里面的文件一起删吗？"},{"role":"assistant","content":"会。删除目录时先递归删掉里面所有文件，再移除目录本身，删完不可恢复。工作区根目录 D:/AI 本身不允许删，会直接报错。"}]}
+{"messages":[{"role":"user","content":"对话里说「创建一个笔记文件」会怎样？"},{"role":"assistant","content":"会直接执行，不再绕圈：\n- 「创建 xxx.txt」：建文件\n- 「往 xxx 里写：内容」：写入\n- 「读取 xxx」：回显内容\n- 「列出文件」：列工作区目录"}]}
+{"messages":[{"role":"user","content":"服务重启后待审批请求还在吗？"},{"role":"assistant","content":"不在。待审批队列只存在进程内存里，服务一重启就清空了，不会写进数据库。重启前没处理的请求，需要重新发起一次操作，再走审批流程。"}]}
+{"messages":[{"role":"user","content":"怎么让局域网里的其他设备访问？"},{"role":"assistant","content":"两步：\n1. 用 scripts/gateway.py 启动，它监听 0.0.0.0:8765\n2. 其他设备访问 http://本机IP:8765\n直接跑 app.main 只监听 127.0.0.1，局域网访问不到。"}]}
+{"messages":[{"role":"user","content":"同一 WiFi 下手机还是打不开？"},{"role":"assistant","content":"先确认服务是用网关脚本起的，再检查 Windows 防火墙有没有放行 8765 的入站 TCP。首次启动时如果弹过网络权限提示，要允许专用网络。"}]}
+{"messages":[{"role":"user","content":"地址后面那个 ?key= 是干嘛的？"},{"role":"assistant","content":"管理员口令的入口：\n1. 首次访问 http://IP:8765/?key=口令\n2. 服务写入 Cookie\n3. 303 跳回不带 key 的地址\n之后这台设备一直算管理员。"}]}
+{"messages":[{"role":"user","content":"Cookie 会存多久？"},{"role":"assistant","content":"一年。名字是 cast_key，SameSite 是 lax。换浏览器、清 Cookie 或换设备，都需要重新带一次 key 参数。"}]}
+{"messages":[{"role":"user","content":"访客能看到哪些模块？"},{"role":"assistant","content":"只开放三个：\n- 对话\n- 文本工坊\n- 沙盒\n数据集、训练、适配器与评测会隐藏，下载模型和释放模型的按钮也会收起来，页面会自动跳到对话页。"}]}
+{"messages":[{"role":"user","content":"访客直接调受保护的接口会怎样？"},{"role":"assistant","content":"会返回 403，提示「该模块仅限本人设备使用」。适配器列表是唯一例外，访客可以只读，因为对话页选模型要用到；但删除、修改适配器仍然会被挡住。"}]}
+{"messages":[{"role":"user","content":"口令存在哪，怎么改？"},{"role":"assistant","content":"位置和生效方式：\n1. 文件是 scripts/admin_key.txt，一行纯文本\n2. 改完服务按修改时间自动重读\n3. 旧 Cookie 失效\n4. 用新口令重新访问一次"}]}
+{"messages":[{"role":"user","content":"把口令文件清空会怎样？"},{"role":"assistant","content":"等于关掉访问控制，所有设备都按管理员处理。这个设计是为了避免把自己锁在门外，但局域网里任何人进来都能改数据、跑训练，别在公共网络这么干。"}]}
+{"messages":[{"role":"user","content":"怎么让它开机就常驻？"},{"role":"assistant","content":"推荐用计划任务：\n1. 新建任务，触发器选开机\n2. 操作指向 tools/serve_8765.ps1\n3. 勾选最高权限\n脚本自带看门狗，进程退出 3 秒后自动重启。"}]}
+{"messages":[{"role":"user","content":"服务日志在哪看？"},{"role":"assistant","content":"看门狗的输出写在 outputs/serve_8765.log，训练日志在 outputs/jobs/<任务ID>/train.log。排查启动失败先看前者的最后几行。"}]}
+{"messages":[{"role":"user","content":"iPad 想当看板一直开着，怎么弄？"},{"role":"assistant","content":"三步：\n1. Safari 打开局域网地址\n2. 分享菜单里「添加到主屏幕」\n3. 设置 → 辅助功能 → 引导式访问，锁定这个应用\n这样就不会被误触退出了。"}]}
+{"messages":[{"role":"user","content":"浏览器非要走 HTTPS，页面打不开？"},{"role":"assistant","content":"因为服务只有 HTTP，没有证书。可以：\n- 手动把地址补成 http:// 开头\n- 关掉浏览器的「始终使用 HTTPS」\n- 换一个没强制升级的浏览器\n别让它自动跳到 https。"}]}
+{"messages":[{"role":"user","content":"改了 config.yaml 要重启吗？"},{"role":"assistant","content":"要。配置是进程启动时读入内存的，改端口、改 GGUF 路径、改线程数都得重启。改 tasks.yaml 不用，文本工坊会重新加载。"}]}
+{"messages":[{"role":"user","content":"训练太慢了，有什么办法？"},{"role":"assistant","content":"优先减工作量：\n- 换 0.5B 或缩短 max_seq_len\n- 减少样本量或把 epochs 降到 1\n- 先用 max_steps=20 验证流程\n- 关掉其他吃内存的程序\nCPU 训练是算力瓶颈，参数调优只能缓解。"}]}
+{"messages":[{"role":"user","content":"loss 忽高忽低正常吗？"},{"role":"assistant","content":"正常，尤其是 batch_size=1 的时候，单条样本差异会直接反映到 loss 上。看整体趋势和 eval_loss，别盯着某一步的抖动；持续上升才需要降学习率或查数据。"}]}
+{"messages":[{"role":"user","content":"训练到一半断了，怎么接着训？"},{"role":"assistant","content":"用同样参数重新发起就行：\n1. 先找本任务目录的 checkpoint\n2. 没有再找历史任务里参数指纹一致的\n3. 从最新 checkpoint 继续\n所以别改学习率、max_steps 这些关键参数。"}]}
+{"messages":[{"role":"user","content":"换了基座模型需要重启吗？"},{"role":"assistant","content":"训练和对话里换模型不用重启，运行时按需加载。但改 config.yaml 里的默认模型、后端或 GGUF 路径，就必须重启服务才生效。"}]}
+{"messages":[{"role":"user","content":"GGUF 和 torch 后端有什么区别？"},{"role":"assistant","content":"| 维度 | GGUF | torch |\n|---|---|---|\n| 速度 | CPU 快 2-3 倍 | 较慢 |\n| 内存 | 更省 | 更吃内存 |\n| 适配器 | 不支持切换 | 支持 LoRA |\n| 困惑度 | 算不了 | 能算 |"}]}
+{"messages":[{"role":"user","content":"内存大概要多少？"},{"role":"assistant","content":"| 形态 | 大致占用 |\n|---|---|\n| 1.5B fp32 | 约 6GB |\n| 3B fp32 | 约 12GB |\n| 1.5B GGUF Q4 | 权重文件约 1GB |\n训练还要额外中间变量，16GB 内存跑 3B 会很紧。"}]}
+{"messages":[{"role":"user","content":"为什么不能一边训练一边聊天？"},{"role":"assistant","content":"训练、评测、对话共用同一份模型和内存，同时跑很容易把机器拖死。程序用一把任务锁把它们串行化，训练或评测期间对话会直接返回忙，等结束再聊。"}]}
+{"messages":[{"role":"user","content":"loss 降下来了，但回答还是很差？"},{"role":"assistant","content":"按这个顺序查：\n- 数据质量和数量够不够\n- 是不是过拟合，轮数太多\n- 评测里的基座/微调对照\n- 回答是否只会背训练集\n数据太单一，loss 再低也没用。"}]}
+{"messages":[{"role":"user","content":"页面评测和线上对话的分数对不上？"},{"role":"assistant","content":"两条链路口径不同。想按线上口径评，用 scripts/eval_live.py 直接请求 /api/chat，默认无思考、贪心、320 token；它不加载模型，也不会和服务抢内存。"}]}
+{"messages":[{"role":"user","content":"启动时报端口被占用？"},{"role":"assistant","content":"先定位再处理：\n1. Get-NetTCPConnection -LocalPort 8765 找 PID\n2. 确认是不是旧的服务副本\n3. 结束它，或改端口\n别直接杀不确定的进程。"}]}
+{"messages":[{"role":"user","content":"导入数据集提示解析失败？"},{"role":"assistant","content":"常见原因：\n- 扩展名不在支持列表\n- JSON 顶层不是数组或对象\n- 文件编码不是 UTF-8\n- jsonl 一行不是完整对象\n先另存 UTF-8 再试。"}]}
+{"messages":[{"role":"user","content":"训练完了在适配器页找不到？"},{"role":"assistant","content":"按顺序确认：\n1. 训练任务状态是不是 success\n2. 失败就看 train.log\n3. 页面点刷新\n4. 看 outputs/jobs 下有没有 adapter 目录\n适配器只在训练成功后写入。"}]}

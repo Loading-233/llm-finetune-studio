@@ -1,0 +1,20 @@
+{"messages":[{"role":"user","content":"Python 里列表推导式和 for 循环怎么选？"},{"role":"assistant","content":"当逻辑简单、只为生成新列表时用推导式更清晰；涉及异常处理、多次赋值或副作用时用普通 for 循环。"}]}
+{"messages":[{"role":"user","content":"Python 中 try/except 应该捕获哪些异常？"},{"role":"assistant","content":"只捕获你能处理的特定异常（如 ValueError、KeyError），避免裸 except；需要兜底时捕获 Exception 并记录日志后再抛出。"}]}
+{"messages":[{"role":"user","content":"git 怎么撤销最近一次 commit 但保留改动？"},{"role":"assistant","content":"用 git reset --soft HEAD~1，提交会取消，改动仍在暂存区。"}]}
+{"messages":[{"role":"user","content":"git rebase 和 merge 有什么区别？"},{"role":"assistant","content":"merge 保留分叉历史并生成合并提交；rebase 把提交线性重放到目标分支，历史更干净但会改写提交哈希，已推送的公共分支不要 rebase。"}]}
+{"messages":[{"role":"user","content":"HTTP 404 和 410 的区别？"},{"role":"assistant","content":"404 表示资源当前不存在（可能以后出现）；410 表示资源已被明确永久删除，不建议再请求。"}]}
+{"messages":[{"role":"user","content":"HTTP 401 和 403 的区别？"},{"role":"assistant","content":"401 是未认证（缺少或无效凭证），403 是已认证但无权限访问。"}]}
+{"messages":[{"role":"user","content":"SQL 里 inner join 和 left join 的区别？"},{"role":"assistant","content":"inner join 只保留两表都匹配的行；left join 保留左表全部行，右表无匹配时补 NULL。"}]}
+{"messages":[{"role":"user","content":"怎么在 SQL 里取每个用户最新一条订单？"},{"role":"assistant","content":"用窗口函数：select * from (select *, row_number() over (partition by user_id order by created_at desc) rn from orders) t where rn = 1。"}]}
+{"messages":[{"role":"user","content":"正则里 .* 和 .*? 有什么区别？"},{"role":"assistant","content":".* 是贪婪匹配，尽可能多匹配；.*? 是非贪婪，尽可能少匹配，常用在提取成对标签之间的内容。"}]}
+{"messages":[{"role":"user","content":"写 Python 代码时为什么要用 with 打开文件？"},{"role":"assistant","content":"with 保证文件在代码块结束后自动关闭，即使中途抛异常也会释放句柄，避免资源泄漏。"}]}
+{"messages":[{"role":"user","content":"Docker 镜像和容器的区别？"},{"role":"assistant","content":"镜像是只读模板，容器是镜像运行起来的实例，可以启动、停止、删除，删除容器不影响镜像。"}]}
+{"messages":[{"role":"user","content":"怎么判断一个函数要不要拆？"},{"role":"assistant","content":"看三点：是否承担多个职责、是否难以单独测试、是否被多处复用。命中任意两点就值得拆。"}]}
+{"messages":[{"role":"user","content":"单元测试应该测什么？"},{"role":"assistant","content":"测行为不测实现：正常路径、边界值、异常分支，以及外部依赖用 mock 隔离。"}]}
+{"messages":[{"role":"user","content":"接口设计里幂等是什么意思？"},{"role":"assistant","content":"同一个请求重复执行多次，结果与执行一次相同。常用幂等键或唯一约束实现，适合支付、创建订单等场景。"}]}
+{"messages":[{"role":"user","content":"数据库索引为什么会让写入变慢？"},{"role":"assistant","content":"每次写入都要同步维护索引结构，索引越多，插入和更新的额外开销越大，所以索引要按查询模式有选择地建。"}]}
+{"messages":[{"role":"user","content":"怎么排查接口变慢的问题？"},{"role":"assistant","content":"先看监控定位是整体变慢还是个别接口，再沿链路查耗时分布（网络、应用、数据库），最后看慢查询和锁等待。"}]}
+{"messages":[{"role":"user","content":"Python 里 is 和 == 的区别？"},{"role":"assistant","content":"== 比较值是否相等，is 比较是否为同一个对象（内存地址），判断 None 时用 is None。"}]}
+{"messages":[{"role":"user","content":"什么是深拷贝和浅拷贝？"},{"role":"assistant","content":"浅拷贝只复制最外层容器，内部对象仍共享；深拷贝递归复制所有层级，修改互不影响。"}]}
+{"messages":[{"role":"user","content":"代码 review 时最该关注什么？"},{"role":"assistant","content":"优先看正确性与边界条件、异常路径、数据一致性，其次看命名和重复代码，风格问题交给工具。"}]}
+{"messages":[{"role":"user","content":"日志应该记录哪些内容？"},{"role":"assistant","content":"关键业务动作、输入输出摘要、错误堆栈、耗时和追踪 ID；不要打印密码、密钥和个人敏感信息。"}]}

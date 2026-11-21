@@ -1,0 +1,121 @@
+{
+  "url": "http://127.0.0.1:8765/api/chat",
+  "bench": "data/eval/benchmark.jsonl",
+  "kb_docs": 235,
+  "adapter": "merged-gguf",
+  "retrieval": true,
+  "thought": false,
+  "verbosity": "normal",
+  "max_new_tokens": 768,
+  "temperature": 0.0,
+  "items": 5,
+  "pass_rate": 0.2,
+  "avg_hit": 0.3,
+  "avg_seconds": 7.6,
+  "avg_answer_s": 7.6,
+  "avg_thought_s": 0.0,
+  "avg_server_total_s": 7.6,
+  "avg_thought_chars": 0.0,
+  "errors": 0,
+  "rows": [
+    {
+      "id": "p02",
+      "category": "产品",
+      "subcategory": "",
+      "question": "免费版有什么限制？",
+      "answer": "## 免费版限制\n\n- **附件大小**：单文件不超过 20MB\n- **并发连接**：同时最多 5 个会话\n- **团队协作**：免费版不支持团队项目\n\n> 这些限制不会随版本升级而改变，你需要明确是否符合需求。",
+      "hit": 0.0,
+      "pass": false,
+      "seconds": 5.3,
+      "answer_s": 5.3,
+      "thought_s": 0.0,
+      "server_total_s": 5.3,
+      "chars": 107,
+      "thought_chars": 0,
+      "retrieval_hits": 1,
+      "hit_questions": [
+        "星尘笔记的免费版有什么限制？"
+      ],
+      "error": ""
+    },
+    {
+      "id": "p03",
+      "category": "产品",
+      "subcategory": "",
+      "question": "支持哪些导出格式？",
+      "answer": "## 导出\n\n默认是 Markdown 和 ZIP，ZIP 内含原始目录结构与链接。",
+      "hit": 0.5,
+      "pass": false,
+      "seconds": 2.1,
+      "answer_s": 2.1,
+      "thought_s": 0.0,
+      "server_total_s": 2.1,
+      "chars": 42,
+      "thought_chars": 0,
+      "retrieval_hits": 1,
+      "hit_questions": [
+        "支持导出成什么格式？"
+      ],
+      "error": ""
+    },
+    {
+      "id": "c02",
+      "category": "编程",
+      "subcategory": "",
+      "question": "Python 里 list 和 tuple 有什么区别？",
+      "answer": "## list 和 tuple 对比\n\n| 组别 | Python | C++ | 要求说明 |\n|---|---|---|---|\n| 理解难度 | 3 | 1 | 有内置函数说明够用 |\n| 持续查询入口 | 帮论 | 帮论、文档 | 查询和编排一起上 |\n| 存活周期 | 3 个月 | 3 个月 | \n\n### 续：怎么给新手解释「先用内置函数，再写完整代码」\n\n- 给结论是「把数据整理好再上 SQL」。\n- 再问「怎么把数据读进去」，给出这段：\n\n```python\ndf = pd.read_sql('select * from orders', conn)\n```\n\n- 儿童结：**先给一个可行方案，再问具体数据**。",
+      "hit": 0.0,
+      "pass": false,
+      "seconds": 12.5,
+      "answer_s": 12.5,
+      "thought_s": 0.0,
+      "server_total_s": 12.5,
+      "chars": 318,
+      "thought_chars": 0,
+      "retrieval_hits": 2,
+      "hit_questions": [
+        "怎么在 SQL 里取每个用户最新一条订单？",
+        "翻译成中文：We should deprioritize this feature and focus on stability first."
+      ],
+      "error": ""
+    },
+    {
+      "id": "d01",
+      "category": "数据",
+      "subcategory": "",
+      "question": "同比和环比有什么区别？",
+      "answer": "## 同比和环比\n\n**解释**: 同比是与去年同期对比，反映绝对变化；环比是与上期对比，反映相对变化。\n\n### 示例\n\n```python\nimport pandas as pd\n\ndef calculate_change(date: pd.Timestamp, base: pd.Timestamp) -> float:\n    return (date - base).days / (date - base).days\n\nbase = pd.Timestamp('2022-01-01')\nprint(calculate_change(pd.Timestamp('2022-02-01'), base))  # 1.0\nprint(calculate_change(pd.Timestamp('2022-03-01'), base))  # 0.5\n```\n\n这个函数可以帮你在不同时间点比较疫情反弹的强度。\n\n> **结论**: 先说明什么数据能用，再给出怎么用的模板，避免用户一堆疑问你都得回答。",
+      "hit": 1.0,
+      "pass": true,
+      "seconds": 11.8,
+      "answer_s": 11.8,
+      "thought_s": 0.0,
+      "server_total_s": 11.8,
+      "chars": 455,
+      "thought_chars": 0,
+      "retrieval_hits": 1,
+      "hit_questions": [
+        "同比和环比有什么区别？"
+      ],
+      "error": ""
+    },
+    {
+      "id": "s01",
+      "category": "学习",
+      "subcategory": "",
+      "question": "什么是费曼学习法？",
+      "answer": "## 费曼学习法\n\n**定义**：用最少时间获得最多信息的学习方法。\n\n### 一步操作\n\n1. **确定目标**：要学什么？\n2. **准备材料**：工具、资料、环境。\n3. **专注一块**：把问题隔离到一个环节。\n4  继续第 1 步。\n\n### 两点提醒\n\n- **不要同时做两件事**：避免信息杂乱。\n- **先评估可用性**：再决定是否提供链接。",
+      "hit": 0.0,
+      "pass": false,
+      "seconds": 6.5,
+      "answer_s": 6.4,
+      "thought_s": 0.0,
+      "server_total_s": 6.4,
+      "chars": 179,
+      "thought_chars": 0,
+      "retrieval_hits": 0,
+      "hit_questions": [],
+      "error": ""
+    }
+  ]
+}

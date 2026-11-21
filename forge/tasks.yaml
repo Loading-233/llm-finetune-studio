@@ -1,0 +1,148 @@
+# 文本工坊任务定义：新增输出类型只需在这里加一条，无需改代码
+tasks:
+  - id: summarize
+    name: 摘要提炼
+    description: 把长文压缩成 3-6 条要点
+    input_hint: 粘贴需要总结的正文
+    output_format: markdown
+    temperature: 0.3
+    max_tokens: 500
+    system: 你是资深编辑，擅长提炼信息，只输出结论，不复述原文。
+    template: |
+      【任务】总结下面的内容，输出 3-6 条要点，每条不超过 30 字，用 Markdown 列表。
+      【原文】
+      {{input}}
+
+  - id: report
+    name: 结构化报告
+    description: 输出「结论 / 依据 / 风险 / 下一步」四段式报告
+    input_hint: 描述背景、数据和你想汇报的事情
+    output_format: markdown
+    temperature: 0.4
+    max_tokens: 900
+    variables:
+      - name: audience
+        label: 汇报对象
+        default: 团队负责人
+    system: 你是善于结构化表达的咨询顾问，先给结论，再给依据。
+    template: |
+      【任务】基于下面的材料，写一份面向「{{audience}}」的简报。
+      必须包含四个小节：## 结论、## 依据、## 风险、## 下一步，每节 2-4 句。
+      【材料】
+      {{input}}
+
+  - id: email
+    name: 商务邮件
+    description: 把要点写成得体的邮件
+    input_hint: 说明收件人、目的和需要包含的信息
+    output_format: text
+    temperature: 0.5
+    max_tokens: 600
+    variables:
+      - name: tone
+        label: 语气
+        default: 正式
+    system: 你是一名职场沟通专家，邮件简洁、有礼貌、行动项明确。
+    template: |
+      【任务】根据下面的要点写一封语气「{{tone}}」的邮件，包含称呼、正文、明确的下一步动作和落款占位符。
+      【要点】
+      {{input}}
+
+  - id: social
+    name: 社媒文案
+    description: 生成适合社交平台发布的短文
+    input_hint: 说明主题、受众和想强调的卖点
+    output_format: text
+    temperature: 0.8
+    max_tokens: 400
+    system: 你是社交媒体文案作者，语言有网感但不夸张，不编造事实。
+    template: |
+      【任务】围绕下面的主题写一条社交媒体文案，120 字以内，开头一句要有钩子，结尾给一个话题标签。
+      不要使用 Markdown 标题，不要编造数据。
+      【主题】
+      {{input}}
+
+  - id: outline
+    name: 文章大纲
+    description: 生成三级大纲，便于直接写作
+    input_hint: 输入文章主题或标题
+    output_format: markdown
+    temperature: 0.6
+    max_tokens: 600
+    system: 你是内容策划，擅长搭建清晰的文章结构。
+    template: |
+      【任务】为下面主题设计一份三级大纲：一级 3-5 个部分，每个部分下 2-4 个要点。
+      【主题】
+      {{input}}
+
+  - id: rewrite
+    name: 改写润色
+    description: 在保留原意的前提下改写文本
+    input_hint: 粘贴需要改写的原文
+    output_format: text
+    temperature: 0.5
+    max_tokens: 800
+    variables:
+      - name: style
+        label: 目标风格
+        default: 简洁专业
+    system: 你是文字编辑，只改表达不改事实，不增加原文没有的信息。
+    template: |
+      【任务】把下面文字改写为「{{style}}」的风格，长度与原意相当，直接输出改写后的正文。
+      【原文】
+      {{input}}
+
+  - id: translate
+    name: 中英互译
+    description: 中译英或英译中，保留术语
+    input_hint: 粘贴需要翻译的内容
+    output_format: text
+    temperature: 0.2
+    max_tokens: 800
+    system: 你是专业译者，译文准确、自然，专有名词保持原样。
+    template: |
+      【任务】判断下面内容的主要语言：中文则译为英文，英文则译为中文。只输出译文，不要解释。
+      【原文】
+      {{input}}
+
+  - id: code
+    name: 代码生成
+    description: 输出可直接运行的代码块
+    input_hint: 描述要实现的功能、输入输出和语言
+    output_format: code
+    temperature: 0.2
+    max_tokens: 900
+    system: 你是严谨的软件工程师，代码可直接运行，包含必要的异常处理。
+    template: |
+      【任务】根据下面的需求写代码，只输出一个代码块，不要多余解释。
+      【需求】
+      {{input}}
+
+  - id: json
+    name: 结构化抽取
+    description: 把自然语言转成 JSON
+    input_hint: 粘贴需要抽取的文本，并在上面说明字段要求（可省略）
+    output_format: json
+    temperature: 0.1
+    max_tokens: 700
+    system: 你是数据抽取引擎，只输出合法 JSON，不要任何解释或 Markdown 代码围栏。
+    template: |
+      【任务】从下面文本中抽取结构化信息，输出 JSON 对象。若文本里已有字段说明，按说明抽取；否则自行归纳字段。
+      只输出 JSON，不要输出其他文字。
+      【文本】
+      {{input}}
+
+  - id: qa
+    name: 知识问答
+    description: 先检索资料再回答，覆盖产品、办公、编程、数据、学习等领域
+    input_hint: 输入任意领域的问题，例如「SQL 里 left join 和 inner join 的区别」
+    output_format: text
+    temperature: 0.2
+    max_tokens: 400
+    retrieval: true
+    system: 你是知识助手。优先依据【参考资料】回答；资料没有覆盖时，用简短可靠的常识回答，并说明这是推断，不要编造具体数字。
+    template: |
+      【参考资料】
+      {{context}}
+      【问题】
+      {{input}}

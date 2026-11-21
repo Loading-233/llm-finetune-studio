@@ -1,0 +1,58 @@
+{
+  "url": "http://127.0.0.1:8765/api/chat",
+  "adapter": "merged-gguf",
+  "retrieval": true,
+  "thought": false,
+  "verbosity": "normal",
+  "max_new_tokens": 320,
+  "temperature": 0.0,
+  "items": 2,
+  "pass_rate": 1.0,
+  "avg_hit": 1.0,
+  "avg_seconds": 4.4,
+  "avg_answer_s": 4.2,
+  "avg_thought_s": 0.0,
+  "avg_server_total_s": 4.2,
+  "avg_thought_chars": 0.0,
+  "errors": 0,
+  "rows": [
+    {
+      "id": "p01",
+      "category": "产品",
+      "question": "专业版多少钱？",
+      "answer": "专业版的价格是按年订阅 199 元/人，按月订阅 19 元/人。",
+      "hit": 1.0,
+      "pass": true,
+      "seconds": 2.8,
+      "answer_s": 2.7,
+      "thought_s": 0.0,
+      "server_total_s": 2.7,
+      "chars": 32,
+      "thought_chars": 0,
+      "retrieval_hits": 1,
+      "hit_questions": [
+        "专业版多少钱？"
+      ],
+      "error": ""
+    },
+    {
+      "id": "p02",
+      "category": "产品",
+      "question": "免费版有什么限制？",
+      "answer": "星尘笔记的免费版有以下限制：\n\n1. 工作区数量：最多创建 3 个工作区。\n2. 笔记条数：共 500 条笔记。\n3. 文件附件大小：单个文件附件上限 20MB。\n\n这些限制是免费版的典型特征，旨在提供基本的使用功能，但不包括高级功能如团队协作和历史版本管理。",
+      "hit": 1.0,
+      "pass": true,
+      "seconds": 6.0,
+      "answer_s": 5.8,
+      "thought_s": 0.0,
+      "server_total_s": 5.8,
+      "chars": 130,
+      "thought_chars": 0,
+      "retrieval_hits": 1,
+      "hit_questions": [
+        "星尘笔记的免费版有什么限制？"
+      ],
+      "error": ""
+    }
+  ]
+}

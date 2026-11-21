@@ -1,0 +1,40 @@
+{"messages":[{"role":"user","content":"星尘笔记是什么产品？"},{"role":"assistant","content":"星尘笔记是一款面向个人与团队的本地优先笔记工具，支持 Markdown、双向链接和离线编辑，数据默认保存在本地。"}]}
+{"messages":[{"role":"user","content":"星尘笔记的免费版有什么限制？"},{"role":"assistant","content":"免费版最多创建 3 个工作区、共 500 条笔记，单文件附件上限 20MB，不包含团队协作与历史版本功能。"}]}
+{"messages":[{"role":"user","content":"专业版多少钱？"},{"role":"assistant","content":"专业版按年订阅 199 元/人，按月订阅 19 元/人，包含无限笔记、团队协作、版本历史和端到端加密。"}]}
+{"messages":[{"role":"user","content":"支持哪些平台？"},{"role":"assistant","content":"星尘笔记支持 Windows、macOS、Linux、iOS 和 Android，网页版可直接访问 app.stardustnote.cn。"}]}
+{"messages":[{"role":"user","content":"可以离线使用吗？"},{"role":"assistant","content":"可以。星尘笔记采用本地优先架构，离线状态下可正常编辑，联网后自动增量同步。"}]}
+{"messages":[{"role":"user","content":"数据存在哪里？会上传到云端吗？"},{"role":"assistant","content":"免费版数据只保存在本地；专业版同步时数据经端到端加密后存储在阿里云华东节点，服务方无法读取明文。"}]}
+{"messages":[{"role":"user","content":"怎么导入已有的印象笔记数据？"},{"role":"assistant","content":"在「设置 - 导入」中选择 Evernote 的 .enex 文件，或先导出为 Markdown 压缩包再批量导入，附件会自动挂到对应笔记。"}]}
+{"messages":[{"role":"user","content":"支持导出成什么格式？"},{"role":"assistant","content":"支持导出 Markdown、PDF、HTML 和 JSON；批量导出会打包成 zip，保留原有的目录结构与双向链接。"}]}
+{"messages":[{"role":"user","content":"双向链接怎么用？"},{"role":"assistant","content":"输入两个左方括号即可触发笔记引用，被引用的笔记会自动出现在「反向链接」面板，方便构建知识网络。"}]}
+{"messages":[{"role":"user","content":"有没有 API？"},{"role":"assistant","content":"专业版提供 REST API 与 Webhook，密钥在「设置 - 开发者」生成，默认限流为每分钟 120 次请求。"}]}
+{"messages":[{"role":"user","content":"团队协作最多支持多少人？"},{"role":"assistant","content":"单个工作区最多 200 名成员，可按只读、可编辑、管理员三种角色分配权限。"}]}
+{"messages":[{"role":"user","content":"误删的笔记能找回吗？"},{"role":"assistant","content":"专业版保留 30 天内的历史版本，可在笔记右上角「历史」中恢复；免费版需依赖本地备份。"}]}
+{"messages":[{"role":"user","content":"同步冲突怎么处理？"},{"role":"assistant","content":"同一段落被两端修改时，星尘笔记会保留两份内容并标记冲突，不会覆盖任何一方的修改。"}]}
+{"messages":[{"role":"user","content":"支持哪些快捷键？"},{"role":"assistant","content":"常用快捷键：Ctrl/Cmd+K 快速搜索，Ctrl/Cmd+Shift+N 新建笔记，Ctrl/Cmd+P 命令面板，Ctrl/Cmd+Shift+L 切换深色模式。"}]}
+{"messages":[{"role":"user","content":"怎么开启深色模式？"},{"role":"assistant","content":"在「设置 - 外观」中选择深色，或点击左下角主题按钮，也可用快捷键 Ctrl/Cmd+Shift+L 快速切换。"}]}
+{"messages":[{"role":"user","content":"笔记数量有上限吗？"},{"role":"assistant","content":"专业版没有笔记数量上限，单条笔记正文建议不超过 5 万字，超出后编辑器会自动分段加载。"}]}
+{"messages":[{"role":"user","content":"支持数学公式吗？"},{"role":"assistant","content":"支持。使用 $...$ 写行内公式，$$...$$ 写块级公式，渲染基于 KaTeX。"}]}
+{"messages":[{"role":"user","content":"能不能画流程图？"},{"role":"assistant","content":"可以，在代码块中指定 mermaid 语言即可渲染流程图、时序图和甘特图。"}]}
+{"messages":[{"role":"user","content":"图片会自动压缩吗？"},{"role":"assistant","content":"默认会压缩到最长边 2048 像素，可在「设置 - 附件」中关闭压缩或调整质量。"}]}
+{"messages":[{"role":"user","content":"支持 OCR 识别图片文字吗？"},{"role":"assistant","content":"专业版支持，右键图片选择「提取文字」即可，识别结果可插入笔记或复制，暂不支持手写体。"}]}
+{"messages":[{"role":"user","content":"有移动端小组件吗？"},{"role":"assistant","content":"iOS 与 Android 都提供「快速笔记」小组件，可一键记录灵感并自动同步。"}]}
+{"messages":[{"role":"user","content":"忘记密码怎么办？"},{"role":"assistant","content":"本地版本不设账号密码，数据用系统钥匙串保护；专业版可在登录页点击「忘记密码」通过邮箱重置。"}]}
+{"messages":[{"role":"user","content":"怎么取消订阅？"},{"role":"assistant","content":"在「设置 - 订阅」中点击「取消自动续费」，当前计费周期结束后转为免费版，数据不会被删除。"}]}
+{"messages":[{"role":"user","content":"支持开发票吗？"},{"role":"assistant","content":"支持，订阅后在「设置 - 订阅 - 发票」填写抬头与税号，电子发票会在 3 个工作日内发送到邮箱。"}]}
+{"messages":[{"role":"user","content":"有教育优惠吗？"},{"role":"assistant","content":"在校师生凭 edu 邮箱认证可享专业版 5 折，认证入口在官网「教育计划」页面。"}]}
+{"messages":[{"role":"user","content":"星尘笔记和 Notion 有什么区别？"},{"role":"assistant","content":"星尘笔记更偏向离线与隐私优先的个人知识库，主打本地存储、双向链接和秒开体验；Notion 更侧重在线协作与数据库视图。"}]}
+{"messages":[{"role":"user","content":"能自建服务器同步吗？"},{"role":"assistant","content":"企业版支持私有化部署，提供 Docker 镜像与部署文档，最低配置为 2 核 4G。"}]}
+{"messages":[{"role":"user","content":"目前有哪些模板？"},{"role":"assistant","content":"内置周报、会议纪要、读书笔记、项目复盘、GTD 清单等 20 多个模板，也可把任意笔记保存为自定义模板。"}]}
+{"messages":[{"role":"user","content":"支持全文搜索吗？"},{"role":"assistant","content":"支持，采用本地索引，搜索响应通常在 50 毫秒内，支持按标签、时间与附件类型过滤。"}]}
+{"messages":[{"role":"user","content":"标签和文件夹有什么区别？"},{"role":"assistant","content":"文件夹是一对多的层级结构，标签是多对多的横向分类，一条笔记可以同时属于一个文件夹和多个标签。"}]}
+{"messages":[{"role":"user","content":"怎么批量修改标签？"},{"role":"assistant","content":"在列表视图按住 Ctrl 多选笔记，右键选择「批量编辑标签」，可新增、移除或替换。"}]}
+{"messages":[{"role":"user","content":"同步速度慢怎么办？"},{"role":"assistant","content":"先检查「设置 - 同步」中的冲突数量与待同步文件大小；若附件较大，可在同步设置中开启「仅同步最近 90 天」。"}]}
+{"messages":[{"role":"user","content":"支持 ARM 架构的电脑吗？"},{"role":"assistant","content":"支持，Windows on ARM 与 Apple Silicon 都有原生安装包，性能与 x86 版本一致。"}]}
+{"messages":[{"role":"user","content":"安装包有多大？"},{"role":"assistant","content":"桌面端安装包约 90MB，安装后占用约 260MB；笔记数据体积取决于附件大小。"}]}
+{"messages":[{"role":"user","content":"数据备份怎么设置？"},{"role":"assistant","content":"在「设置 - 备份」中可开启每日自动备份到本地目录，默认保留最近 7 份，也可手动导出全量备份。"}]}
+{"messages":[{"role":"user","content":"如何反馈 bug？"},{"role":"assistant","content":"在应用内「帮助 - 反馈」提交，或发送邮件到 support@stardustnote.cn，附上版本号与日志文件会更快定位问题。"}]}
+{"messages":[{"role":"user","content":"客服响应时间多久？"},{"role":"assistant","content":"工作日 9:00-21:00 在线客服平均 5 分钟内响应，邮件工单承诺 24 小时内回复。"}]}
+{"messages":[{"role":"user","content":"有社区或用户群吗？"},{"role":"assistant","content":"有官方论坛 bbs.stardustnote.cn 和微信用户群，入群方式见官网「社区」页面。"}]}
+{"messages":[{"role":"user","content":"更新频率是怎样的？"},{"role":"assistant","content":"桌面端通常每月发布一个功能版本，移动端每两周修复一次问题，更新日志在官网「更新」页可查。"}]}
+{"messages":[{"role":"user","content":"星尘笔记支持插件吗？"},{"role":"assistant","content":"支持，插件市场已有日历、番茄钟、白板等扩展，也可用 JavaScript 编写本地插件，插件默认无网络权限。"}]}

@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:8765/api/chat",
+  "adapter": "merged-gguf",
+  "retrieval": true,
+  "thought": true,
+  "verbosity": "detail",
+  "max_new_tokens": 768,
+  "temperature": 0.0,
+  "items": 1,
+  "pass_rate": 1.0,
+  "avg_hit": 1.0,
+  "avg_seconds": 25.7,
+  "avg_answer_s": 15.5,
+  "avg_thought_s": 10.1,
+  "avg_server_total_s": 25.6,
+  "avg_thought_chars": 287.0,
+  "errors": 0,
+  "rows": [
+    {
+      "id": "p02",
+      "category": "产品",
+      "question": "免费版有什么限制？",
+      "answer": "结论：免费版通常会有一些限制，这些限制可能包括功能有限、内容受限、下载数量有限等。\n\n理由和步骤：\n1. 功能限制：免费版通常会限制用户可以创建的工作区数量和笔记数量。例如，星尘笔记的免费版最多可以创建 3 个工作区，共 500 条笔记。这些限制是为了确保用户不会因为使用免费版而过度消耗资源。\n2. 内容限制：免费版可能限制用户可以下载的文件大小。例如，星尘笔记的免费版不包含团队协作与历史版本功能，这些功能可能需要付费才能使用。\n3. 下载限制：免费版可能限制用户可以下载的文件数量。例如，星尘笔记的免费版不包含团队协作与历史版本功能，这些功能可能需要付费才能使用。\n\n总结：免费版的限制是为了保护用户利益，避免用户因为使用免费版而过度消耗资源。这些限制的具体内容需要根据不同的应用或服务来确定。",
+      "hit": 1.0,
+      "pass": true,
+      "seconds": 25.7,
+      "answer_s": 15.5,
+      "thought_s": 10.1,
+      "server_total_s": 25.6,
+      "chars": 350,
+      "thought_chars": 287,
+      "retrieval_hits": 1,
+      "hit_questions": [
+        "星尘笔记的免费版有什么限制？"
+      ],
+      "error": ""
+    }
+  ]
+}
